@@ -93,6 +93,14 @@ Reachable from the home screen and from the persistent pane.
 - Reachable from the landing screen (screen 1) — a light-touch entry
   point is enough, doesn't need to be prominent
 
+### 10. Audit trail
+Reachable from the persistent pane on any screen.
+- A chronological list of every point change: round, category, question,
+  team, point value, and timestamp
+- Filterable by round, category, question, and team
+- Remains viewable after a session ends (view-only, alongside the
+  leaderboard)
+
 ---
 
 ## Persistent pane (appears on every screen)
@@ -103,6 +111,7 @@ Reachable from the home screen and from the persistent pane.
   is enough; this is a nice-to-have, not a core requirement)
 - Running total score summary per team
 - Shortcut to the score deduction screen
+- Shortcut to the audit trail (see screen 10 below)
 
 ---
 

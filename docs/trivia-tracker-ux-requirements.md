@@ -2,39 +2,40 @@
 
 ## Must Have (M)
 
-| ID     | Requirement                                                                                                                                                                                                                                                                                                                                                                                 |
-|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| UX-M01 | The system shall allow the score tracker to start a session for a trivia night.                                                                                                                                                                                                                                                                                                             |
-| UX-M02 | Upon starting a session, the system shall display a home screen showing the list of categories grouped by round, along with a button to access the leaderboard.                                                                                                                                                                                                                             |
-| UX-M03 | The system shall provide access to the home screen from every other screen.                                                                                                                                                                                                                                                                                                                 |
-| UX-M04 | Each screen shall include a navigation control that allows the score tracker to navigate directly to a specific round, category, or question.                                                                                                                                                                                                                                               |
+| ID | Requirement |
+|---|---|
+| UX-M01 | The system shall allow the score tracker to start a session for a trivia night. |
+| UX-M02 | Upon starting a session, the system shall display a home screen showing the list of categories grouped by round, along with a button to access the leaderboard. |
+| UX-M03 | The system shall provide access to the home screen from every other screen. |
+| UX-M04 | Each screen shall include a navigation control that allows the score tracker to navigate directly to a specific round, category, or question. |
 | UX-M05 | Each question shall have a dedicated scoring screen that provides two methods of awarding points to a team: (a) a button that applies a predefined point value on click, and (b) an input field for entering a specific point value. Both methods shall be available on the same screen. The screen shall display the question's identifier (FR-M08) only, not the question's text content. |
-| UX-M06 | The system shall allow the score tracker to enter or view scores for all teams for a given question on a single screen.                                                                                                                                                                                                                                                                     |
-| UX-M07 | The system shall display a persistent pane on all screens containing: (a) access to the home screen, (b) access to each round, category, and question, (c) a summary of each team's running total score, and (d) access to the score deduction screen (UX-M09).                                                                                                                             |
-| UX-M08 | The system shall allow the score tracker to update the score of a previously answered question.                                                                                                                                                                                                                                                                                             |
-| UX-M09 | The system shall provide a score deduction screen allowing the score tracker to deduct points from a team's score to account for rule violations or penalties. This screen shall be accessible from both the home screen and the persistent pane.                                                                                                                                           |
-| UX-M10 | The system shall provide a control, accessible from the home screen, allowing the score tracker to end the active session. The system shall display a confirmation prompt before ending the session, since doing so locks further edits (FR-M14).                                                                                                                                           |
-| UX-M11 | The system shall provide a session-creation flow, completed before UX-M01 (starting the session), in which the game master configures rounds, the categories within each round, the questions within each category, and the default point value per question (FR-M15).                                                                                                                      |
-| UX-M12 | The session-creation flow shall allow the game master to specify the number of participating teams and enter each team's name (FR-M16).                                                                                                                                                                                                                                                     |
-| UX-M13 | The session-creation flow shall allow the game master to optionally add a tie-breaker round, including a defined number of tie-breaker questions (FR-M17). The tie-breaker round shall appear and score identically to any other round.                                                                                                                                                     |
-| UX-M14 | The leaderboard and the end-session flow shall handle questions that were never activated or answered without error, treating them as contributing zero points (FR-M18).                                                                                                                                                                                                                    |
-| UX-M15 | Upon completing the score entry for a question (UX-M05/UX-M06), the system shall automatically advance the score tracker to the next question in sequence.                                                                                                                                                                                                                                  |
-| UX-M16 | The system shall display a confirmation prompt before overwriting an existing score when editing a past question, to prevent accidental data loss.                                                                                                                                                                                                                                          |
-| UX-M17 | The system shall provide a screen where a view-only device can enter or scan the session identifier (FR-M19) to connect to the active session.                                                                                                                                                                                                                                              |
-| UX-M18 | Upon opening the app with no active session in progress, the system shall display a landing screen with two options: "Start a session" (leading to the session-creation flow, UX-M11) and "Join a session" (leading to the session-join screen, UX-M17).                                                                                                                                    |
-| UX-M19 | If the device was already acting as the score tracker for an active session (FR-M25), the app shall skip the landing screen (UX-M18) on reopen and return directly to that session's home screen (UX-M02).                                                                                                                                                                                  |
-| UX-M20 | The home screen shall display the session identifier (join code or QR code, FR-M26) so the score tracker can share it with participants joining as view-only viewers.                                                                                                                                                                                                                       |
+| UX-M06 | The system shall allow the score tracker to enter or view scores for all teams for a given question on a single screen. |
+| UX-M07 | The system shall display a persistent pane on all screens containing: (a) access to the home screen, (b) access to each round, category, and question, (c) a summary of each team's running total score, (d) access to the score deduction screen (UX-M09), and (e) access to the audit trail screen (UX-M21). |
+| UX-M08 | The system shall allow the score tracker to update the score of a previously answered question. |
+| UX-M09 | The system shall provide a score deduction screen allowing the score tracker to deduct points from a team's score to account for rule violations or penalties. This screen shall be accessible from both the home screen and the persistent pane. |
+| UX-M10 | The system shall provide a control, accessible from the home screen, allowing the score tracker to end the active session. The system shall display a confirmation prompt before ending the session, since doing so locks further edits (FR-M14). |
+| UX-M11 | The system shall provide a session-creation flow, completed before UX-M01 (starting the session), in which the game master configures rounds, the categories within each round, the questions within each category, and the default point value per question (FR-M15). |
+| UX-M12 | The session-creation flow shall allow the game master to specify the number of participating teams and enter each team's name (FR-M16). |
+| UX-M13 | The session-creation flow shall allow the game master to optionally add a tie-breaker round, including a defined number of tie-breaker questions (FR-M17). The tie-breaker round shall appear and score identically to any other round. |
+| UX-M14 | The leaderboard and the end-session flow shall handle questions that were never activated or answered without error, treating them as contributing zero points (FR-M18). |
+| UX-M15 | Upon completing the score entry for a question (UX-M05/UX-M06), the system shall automatically advance the score tracker to the next question in sequence. |
+| UX-M16 | The system shall display a confirmation prompt before overwriting an existing score when editing a past question, to prevent accidental data loss. |
+| UX-M17 | The system shall provide a screen where a view-only device can enter or scan the session identifier (FR-M19) to connect to the active session. |
+| UX-M18 | Upon opening the app with no active session in progress, the system shall display a landing screen with two options: "Start a session" (leading to the session-creation flow, UX-M11) and "Join a session" (leading to the session-join screen, UX-M17). |
+| UX-M19 | If the device was already acting as the score tracker for an active session (FR-M25), the app shall skip the landing screen (UX-M18) on reopen and return directly to that session's home screen (UX-M02). |
+| UX-M20 | The home screen shall display the session identifier (join code or QR code, FR-M26) so the score tracker can share it with participants joining as view-only viewers. |
+| UX-M21 | The system shall provide an audit trail screen, accessible from the persistent pane, showing every point change (FR-M12) with its round, category, question, team, point value, and timestamp. The screen shall allow filtering by round, category, question, and team. |
 
 ## Should Have (S)
 
-| ID     | Requirement                                                                                                                         |
-|--------|-------------------------------------------------------------------------------------------------------------------------------------|
+| ID | Requirement |
+|---|---|
 | UX-S01 | The leaderboard shall display each team's score broken down by: total for the entire game, total per category, and total per round. |
 
 ## Could Have (C)
 
-| ID     | Requirement                                                                                                                              |
-|--------|------------------------------------------------------------------------------------------------------------------------------------------|
+| ID | Requirement |
+|---|---|
 | UX-C01 | The system shall visually indicate which questions have already been scored versus which remain unanswered, from the navigation control. |
 
 ## Won't Have (W)
@@ -103,3 +104,11 @@
     device *enters* a session code, but nothing said where the score
     tracker *sees* that code to share it in the first place. The home
     screen now displays it directly.
+
+11. **Audit trail had no screen or access point — resolved by UX-M21.**
+    FR-M12 (the audit trail's data) and FR-M21 (its post-session
+    visibility) were both defined, but nothing specified where or how
+    the score tracker actually views it. UX-M21 adds a dedicated screen,
+    reachable from the persistent pane (UX-M07 updated accordingly), with
+    the same filtering (round, category, question, team) as the
+    underlying data.
