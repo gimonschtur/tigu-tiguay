@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#E6D7C0; font-family:Manrope, system-ui, sans-serif; }
+  a { color:#1F7A72; text-decoration:none; }
+  a:hover { color:#3B2417; }
+</style>
+</helmet>
+
+<section style="padding:56px 56px 96px; display:flex; flex-direction:column; gap:48px">
+  <div id="1a" style="display:flex; flex-direction:column; gap:8px">
+    <div style="display:flex; align-items:center; gap:12px">
+      <span style="font-family:Manrope,sans-serif; font-size:12px; font-weight:800; letter-spacing:.12em; background:#3B2417; color:#F1E4D0; padding:5px 10px; border-radius:6px">1A</span>
+      <h1 style="font-family:Fraunces,serif; font-weight:600; font-size:40px; margin:0; color:#3B2417">Tigu-Tiguay — score tracker mockups</h1>
+    </div>
+    <p style="margin:0; font-size:15px; color:#8A6A4A; max-width:760px">Barako Coastal. Mobile screens 1–10, plus desktop layouts for live scoring and the leaderboard. Sample event: 5 teams, 3 rounds and a tie-breaker, default 10 points per question.</p>
+  </div>
+
+  <!-- ============ MOBILE ROW 1 ============ -->
+  <div style="display:flex; flex-wrap:wrap; gap:40px">
+
+    <!-- 1. LANDING -->
+    <div style="display:flex; flex-direction:column; gap:12px">
+      <div style="font-family:Fraunces,serif; font-size:19px; color:#3B2417">1 · Landing</div>
+      <div style="width:390px; height:844px; background:#F1E4D0; border-radius:28px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 10px 34px rgba(59,36,23,.18); color:#3B2417">
+        <div style="height:52px; background:#3B2417; flex:none"></div>
+        <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:0 28px; gap:40px">
+          <div style="display:flex; flex-direction:column; gap:10px">
+            <div style="font-family:Fraunces,serif; font-size:44px; line-height:1.05; font-weight:600">Tigu-Tiguay</div>
+            <div style="font-size:15px; color:#8A6A4A">Borongan trivia night · ThirdTry Coffee</div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:14px">
+            <button style="background:#1F7A72; color:#FBF6EC; border:none; border-radius:12px; padding:18px; font-family:Manrope,sans-serif; font-size:17px; font-weight:700; cursor:pointer">Start a session</button>
+            <button style="background:transparent; color:#3B2417; border:1.5px solid rgba(59,36,23,.35); border-radius:12px; padding:18px; font-family:Manrope,sans-serif; font-size:17px; font-weight:700; cursor:pointer">Join a session</button>
+          </div>
+          <div style="display:flex; justify-content:center">
+            <a href="#1a" style="font-size:14px; font-weight:600; color:#8A6A4A; border-bottom:1px solid rgba(138,106,74,.4); padding-bottom:2px">Past sessions</a>
+          </div>
+        </div>
+        <div style="padding:0 28px 34px; font-size:12px; color:#8A6A4A; text-align:center">No active session on this device</div>
+      </div>
+    </div>
+
+    <!-- 2. SESSION CREATION -->
+    <div style="display:flex; flex-direction:column; gap:12px">
+      <div style="font-family:Fraunces,serif; font-size:19px; color:#3B2417">2 · Session creation</div>
+      <div style="width:390px; height:844px; background:#F1E4D0; border-radius:28px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 10px 34px rgba(59,36,23,.18); color:#3B2417">
+        <div style="height:56px; background:#3B2417; color:#F1E4D0; display:flex; align-items:center; gap:12px; padding:0 16px; flex:none">
+          <span style="font-size:15px; font-weight:700">Back</span>
+          <span style="font-family:Fraunces,serif; font-size:18px; margin-left:auto; margin-right:auto">New session</span>
+        </div>
+        <div style="display:flex; gap:6px; padding:14px 16px 0">
+          <div style="flex:1; height:4px; border-radius:2px; background:#1F7A72"></div>
+          <div style="flex:1; height:4px; border-radius:2px; background:#1F7A72"></div>
+          <div style="flex:1; height:4px; border-radius:2px; background:rgba(59,36,23,.15)"></div>
+        </div>
+        <div style="padding:8px 16px 4px; font-size:12px; font-weight:700; letter-spacing:.1em; color:#8A6A4A">STEP 2 OF 3 · ROUNDS</div>
+        <div style="flex:1; overflow:hidden; padding:6px 16px 16px; display:flex; flex-direction:column; gap:12px">
+          <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:14px; display:flex; flex-direction:column; gap:10px">
+            <div style="display:flex; align-items:center; justify-content:space-between">
+              <div style="font-family:Fraunces,serif; font-size:18px">Round 1 · Kasaysayan</div>
+              <div style="font-size:13px; font-weight:700; color:#8A6A4A">2 categories</div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:8px">
+              <div style="display:flex; align-items:center; justify-content:space-between; background:#F1E4D0; border-radius:8px; padding:10px 12px">
+                <span style="font-size:15px">Borongan basics</span>
+                <span style="font-size:13px; color:#8A6A4A; font-variant-numeric:tabular-nums">5 questions</span>
+              </div>
+              <div style="display:flex; align-items:center; justify-content:space-between; background:#F1E4D0; border-radius:8px; padding:10px 12px">
+                <span style="font-size:15px">Eastern Samar landmarks</span>
+                <span style="font-size:13px; color:#8A6A4A; font-variant-numeric:tabular-nums">5 questions</span>
+              </div>
+            </div>
+            <button style="align-self:flex-start; background:transparent; border:1.5px dashed rgba(31,122,114,.5); color:#1F7A72; border-radius:8px; padding:8px 12px; font-family:Manrope,sans-serif; font-size:14px; font-weight:700; cursor:pointer">Add category</button>
+          </div>
+
+          <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:14px; display:flex; flex-direction:column; gap:10px">
+            <div style="display:flex; align-items:center; justify-content:space-between">
+              <div style="font-family:Fraunces,serif; font-size:18px">Round 2 · Pop culture</div>
+              <div style="font-size:13px; font-weight:700; color:#8A6A4A">2 categories</div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:8px">
+              <div style="display:flex; align-items:center; justify-content:space-between; background:#F1E4D0; border-radius:8px; padding:10px 12px">
+                <span style="font-size:15px">Movies</span>
+                <span style="font-size:13px; color:#8A6A4A; font-variant-numeric:tabular-nums">5 questions</span>
+              </div>
+              <div style="display:flex; align-items:center; justify-content:space-between; background:#F1E4D0; border-radius:8px; padding:10px 12px">
+                <span style="font-size:15px">OPM music</span>
+                <span style="font-size:13px; color:#8A6A4A; font-variant-numeric:tabular-nums">5 questions</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:14px; display:flex; flex-direction:column; gap:12px">
+            <div style="font-size:12px; font-weight:700; letter-spacing:.1em; color:#8A6A4A">DEFAULT POINTS PER QUESTION</div>
+            <div style="display:flex; align-items:center; gap:10px">
+              <input value="10" style="width:84px; background:#F1E4D0; border:1.5px solid rgba(59,36,23,.25); border-radius:10px; padding:12px; font-family:Manrope,sans-serif; font-size:20px; font-weight:700; color:#3B2417; text-align:center; font-variant-numeric:tabular-nums">
+              <span style="font-size:13px; color:#8A6A4A">Whole number, 1–100. Override per question later.</span>
+            </div>
+          </div>
+
+          <sc-if value="{{ showTiebreaker }}" hint-placeholder-val="{{ true }}">
+            <div style="background:#FBF6EC; border:1px solid rgba(201,138,43,.4); border-radius:12px; padding:14px; display:flex; align-items:center; justify-content:space-between; gap:12px">
+              <div style="display:flex; flex-direction:column; gap:3px">
+                <div style="font-family:Fraunces,serif; font-size:17px">Tie-breaker round</div>
+                <div style="font-size:13px; color:#8A6A4A; font-variant-numeric:tabular-nums">3 questions</div>
+              </div>
+              <div style="width:46px; height:27px; border-radius:14px; background:#1F7A72; display:flex; align-items:center; justify-content:flex-end; padding:3px; flex:none">
+                <div style="width:21px; height:21px; border-radius:50%; background:#FBF6EC"></div>
+              </div>
+            </div>
+          </sc-if>
+
+          <button style="background:transparent; border:1.5px dashed rgba(59,36,23,.3); color:#3B2417; border-radius:10px; padding:14px; font-family:Manrope,sans-serif; font-size:15px; font-weight:700; cursor:pointer">Add round</button>
+        </div>
+        <div style="flex:none; padding:14px 16px 26px; background:#3B2417; display:flex; gap:12px">
+          <button style="flex:1; background:transparent; border:1.5px solid rgba(241,228,208,.4); color:#F1E4D0; border-radius:10px; padding:15px; font-family:Manrope,sans-serif; font-size:15px; font-weight:700; cursor:pointer">Back</button>
+          <button style="flex:2; background:#1F7A72; border:none; color:#FBF6EC; border-radius:10px; padding:15px; font-family:Manrope,sans-serif; font-size:15px; font-weight:700; cursor:pointer">Next · Teams</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. HOME -->
+    <div style="display:flex; flex-direction:column; gap:12px">
+      <div style="font-family:Fraunces,serif; font-size:19px; color:#3B2417">3 · Home</div>
+      <div style="width:390px; height:844px; background:#F1E4D0; border-radius:28px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 10px 34px rgba(59,36,23,.18); color:#3B2417">
+        <div style="height:56px; background:#3B2417; color:#F1E4D0; display:flex; align-items:center; justify-content:space-between; padding:0 16px; flex:none">
+          <span style="font-family:Fraunces,serif; font-size:18px">Tigu-Tiguay</span>
+          <span style="font-size:12px; font-weight:700; letter-spacing:.08em; color:#C98A2B">SCORE TRACKER</span>
+        </div>
+        <div style="flex:1; overflow:hidden; padding:16px 16px 8px; display:flex; flex-direction:column; gap:14px">
+          <sc-if value="{{ showQrCode }}" hint-placeholder-val="{{ true }}">
+            <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:14px; display:flex; align-items:center; gap:14px">
+              <div style="width:72px; height:72px; border-radius:8px; background:repeating-linear-gradient(45deg,#3B2417 0 4px,#FBF6EC 4px 8px); flex:none"></div>
+              <div style="display:flex; flex-direction:column; gap:4px">
+                <div style="font-size:12px; font-weight:700; letter-spacing:.1em; color:#8A6A4A">JOIN CODE</div>
+                <div style="font-family:Manrope,sans-serif; font-size:26px; font-weight:800; letter-spacing:.06em; font-variant-numeric:tabular-nums">BRGN-4417</div>
+                <div style="font-size:12px; color:#8A6A4A">Scan or enter to view scores</div>
+              </div>
+            </div>
+          </sc-if>
+
+          <div style="display:flex; gap:8px">
+            <button style="flex:1.2; background:#1F7A72; border:none; color:#FBF6EC; border-radius:10px; padding:13px 6px; font-family:Manrope,sans-serif; font-size:14px; font-weight:700; cursor:pointer">Leaderboard</button>
+            <button style="flex:1; background:transparent; border:1.5px solid #D9714E; color:#D9714E; border-radius:10px; padding:13px 6px; font-family:Manrope,sans-serif; font-size:14px; font-weight:700; cursor:pointer">Deduct</button>
+            <button style="flex:1; background:transparent; border:1.5px solid rgba(59,36,23,.35); color:#3B2417; border-radius:10px; padding:13px 6px; font-family:Manrope,sans-serif; font-size:14px; font-weight:700; cursor:pointer">End session</button>
+          </div>
+
+          <div style="flex:1; overflow:hidden; display:flex; flex-direction:column; gap:12px">
+            <div style="display:flex; flex-direction:column; gap:8px">
+              <div style="display:flex; align-items:baseline; justify-content:space-between">
+                <div style="font-family:Fraunces,serif; font-size:17px">Round 1 · Kasaysayan</div>
+                <div style="font-size:12px; color:#8A6A4A; font-variant-numeric:tabular-nums">10 / 10</div>
+              </div>
+              <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; display:flex; flex-direction:column">
+                <div style="display:flex; align-items:center; justify-content:space-between; padding:11px 14px; border-bottom:1px solid rgba(59,36,23,.07)">
+                  <span style="font-size:15px">Borongan basics</span>
+                  <span style="font-size:12px; font-weight:700; color:#1F7A72; font-variant-numeric:tabular-nums">5 / 5</span>
+                </div>
+                <div style="display:flex; align-items:center; justify-content:space-between; padding:11px 14px">
+                  <span style="font-size:15px">Eastern Samar landmarks</span>
+                  <span style="font-size:12px; font-weight:700; color:#1F7A72; font-variant-numeric:tabular-nums">5 / 5</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:8px">
+              <div style="display:flex; align-items:baseline; justify-content:space-between">
+                <div style="font-family:Fraunces,serif; font-size:17px">Round 2 · Pop culture</div>
+                <div style="font-size:12px; color:#8A6A4A; font-variant-numeric:tabular-nums">4 / 10</div>
+              </div>
+              <div style="background:#FBF6EC; border:1.5px solid #1F7A72; border-radius:12px; display:flex; flex-direction:column">
+                <div style="display:flex; align-items:center; justify-content:space-between; padding:11px 14px; border-bottom:1px solid rgba(59,36,23,.07)">
+                  <span style="font-size:15px; font-weight:700">Movies</span>
+                  <span style="font-size:12px; font-weight:700; color:#1F7A72; font-variant-numeric:tabular-nums">In progress · 4 / 5</span>
+                </div>
+                <div style="display:flex; align-items:center; justify-content:space-between; padding:11px 14px">
+                  <span style="font-size:15px">OPM music</span>
+                  <span style="font-size:12px; color:#8A6A4A; font-variant-numeric:tabular-nums">0 / 5</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:8px">
+              <div style="display:flex; align-items:baseline; justify-content:space-between">
+                <div style="font-family:Fraunces,serif; font-size:17px">Round 3 · Barako &amp; brew</div>
+                <div style="font-size:12px; color:#8A6A4A; font-variant-numeric:tabular-nums">0 / 10</div>
+              </div>
+              <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; display:flex; flex-direction:column">
+                <div style="display:flex; align-items:center; justify-content:space-between; padding:11px 14px; border-bottom:1px solid rgba(59,36,23,.07)">
+                  <span style="font-size:15px">Coffee origins</span>
+                  <span style="font-size:12px; color:#8A6A4A; font-variant-numeric:tabular-nums">0 / 5</span>
+                </div>
+                <div style="display:flex; align-items:center; justify-content:space-between; padding:11px 14px">
+                  <span style="font-size:15px">Brew methods</span>
+                  <span style="font-size:12px; color:#8A6A4A; font-variant-numeric:tabular-nums">0 / 5</span>
+                </div>
+              </div>
+            </div>
+
+            <sc-if value="{{ showTiebreaker }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex; align-items:center; justify-content:space-between; background:#FBF6EC; border:1px dashed rgba(201,138,43,.6); border-radius:12px; padding:11px 14px">
+                <span style="font-family:Fraunces,serif; font-size:16px">Tie-breaker</span>
+                <span style="font-size:12px; color:#8A6A4A; font-variant-numeric:tabular-nums">0 / 3</span>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+
+        <div style="flex:none; background:#3B2417; padding:10px 0 22px">
+          <div style="display:flex; gap:6px; padding:0 10px 8px; overflow:hidden">
+            <div style="flex:1; min-width:0; background:rgba(241,228,208,.1); border-radius:8px; padding:6px 7px; display:flex; flex-direction:column; gap:1px">
+              <span style="font-size:10px; color:rgba(241,228,208,.65); white-space:nowrap; overflow:hidden; text-overflow:ellipsis">Baybay boys</span>
+              <span style="font-size:15px; font-weight:800; color:#C98A2B; font-variant-numeric:tabular-nums; line-height:1.2">78</span>
+            </div>
+            <div style="flex:1; min-width:0; background:rgba(241,228,208,.1); border-radius:8px; padding:6px 7px; display:flex; flex-direction:column; gap:1px">
+              <span style="font-size:10px; color:rgba(241,228,208,.65); white-space:nowrap; overflow:hidden; text-overflow:ellipsis">Ana's crew</span>
+              <span style="font-size:15px; font-weight:800; color:#F1E4D0; font-variant-numeric:tabular-nums; line-height:1.2">71</span>
+            </div>
+            <div style="flex:1; min-width:0; background:rgba(241,228,208,.1); border-radius:8px; padding:6px 7px; display:flex; flex-direction:column; gap:1px">
+              <span style="font-size:10px; color:rgba(241,228,208,.65); white-space:nowrap; overflow:hidden; text-overflow:ellipsis">Team lampitaw</span>
+              <span style="font-size:15px; font-weight:800; color:#F1E4D0; font-variant-numeric:tabular-nums; line-height:1.2">65</span>
+            </div>
+            <div style="flex:1; min-width:0; background:rgba(241,228,208,.1); border-radius:8px; padding:6px 7px; display:flex; flex-direction:column; gap:1px">
+              <span style="font-size:10px; color:rgba(241,228,208,.65); white-space:nowrap; overflow:hidden; text-overflow:ellipsis">Cafe kwatro</span>
+              <span style="font-size:15px; font-weight:800; color:#F1E4D0; font-variant-numeric:tabular-nums; line-height:1.2">52</span>
+            </div>
+            <div style="flex:1; min-width:0; background:rgba(241,228,208,.1); border-radius:8px; padding:6px 7px; display:flex; flex-direction:column; gap:1px">
+              <span style="font-size:10px; color:rgba(241,228,208,.65); white-space:nowrap; overflow:hidden; text-overflow:ellipsis">Sundo squad</span>
+              <span style="font-size:15px; font-weight:800; color:#F1E4D0; font-variant-numeric:tabular-nums; line-height:1.2">44</span>
+            </div>
+          </div>
+          <div style="display:flex; border-top:1px solid rgba(241,228,208,.15)">
+            <div style="flex:1; padding:12px 4px; text-align:center; font-size:13px; font-weight:700; color:#C98A2B">Home</div>
+            <div style="flex:1; padding:12px 4px; text-align:center; font-size:13px; font-weight:700; color:rgba(241,228,208,.8)">Navigate</div>
+            <div style="flex:1; padding:12px 4px; text-align:center; font-size:13px; font-weight:700; color:rgba(241,228,208,.8)">Deduct</div>
+            <div style="flex:1; padding:12px 4px; text-align:center; font-size:13px; font-weight:700; color:rgba(241,228,208,.8)">Audit</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. LIVE SCORING -->
+    <div style="display:flex; flex-direction:column; gap:12px">
+      <div style="font-family:Fraunces,serif; font-size:19px; color:#3B2417">4 · Live scoring</div>
+      <div style="width:390px; height:844px; background:#F1E4D0; border-radius:28px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 10px 34px rgba(59,36,23,.18); color:#3B2417">
+        <div style="height:56px; background:#3B2417; color:#F1E4D0; display:flex; align-items:center; justify-content:space-between; padding:0 16px; flex:none">
+          <span style="font-size:15px; font-weight:700">Home</span>
+          <span style="font-size:12px; color:rgba(241,228,208,.7)">Round 2 · Movies</span>
+        </div>
+        <div style="flex:1; overflow:hidden; padding:16px; display:flex; flex-direction:column; gap:14px">
+          <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:16px; display:flex; align-items:center; justify-content:space-between">
+            <div style="display:flex; flex-direction:column; gap:4px">
+              <div style="font-size:12px; font-weight:700; letter-spacing:.1em; color:#8A6A4A">QUESTION</div>
+              <div style="font-family:Manrope,sans-serif; font-size:30px; font-weight:800; letter-spacing:.02em; font-variant-numeric:tabular-nums">R2-C1-Q4</div>
+            </div>
+            <div style="text-align:right; display:flex; flex-direction:column; gap:4px">
+              <div style="font-size:12px; color:#8A6A4A">Default</div>
+              <div style="font-size:22px; font-weight:800; color:#1F7A72; font-variant-numeric:tabular-nums">10 pts</div>
+            </div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:10px">
+            <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:12px 14px; display:flex; align-items:center; gap:10px">
+              <span style="flex:1; font-size:16px; font-weight:600">Baybay boys</span>
+              <button style="background:#1F7A72; border:none; color:#FBF6EC; border-radius:10px; padding:12px 14px; min-width:66px; font-family:Manrope,sans-serif; font-size:16px; font-weight:800; font-variant-numeric:tabular-nums; cursor:pointer">+10</button>
+              <input placeholder="pts" style="width:62px; background:#F1E4D0; border:1.5px solid rgba(59,36,23,.25); border-radius:10px; padding:12px 6px; font-family:Manrope,sans-serif; font-size:16px; font-weight:700; color:#3B2417; text-align:center; font-variant-numeric:tabular-nums">
+            </div>
+
+            <div style="background:#FBF6EC; border:1.5px solid #1F7A72; border-radius:12px; padding:12px 14px; display:flex; align-items:center; gap:10px">
+              <span style="flex:1; font-size:16px; font-weight:600">Ana's crew</span>
+              <div style="background:rgba(31,122,114,.12); color:#1F7A72; border-radius:10px; padding:12px 14px; min-width:66px; text-align:center; font-size:16px; font-weight:800; font-variant-numeric:tabular-nums">+10</div>
+              <div style="width:62px; text-align:center; font-size:12px; font-weight:700; color:#1F7A72">Scored</div>
+            </div>
+
+            <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:12px 14px; display:flex; align-items:center; gap:10px">
+              <span style="flex:1; font-size:16px; font-weight:600">Team lampitaw</span>
+              <button style="background:#1F7A72; border:none; color:#FBF6EC; border-radius:10px; padding:12px 14px; min-width:66px; font-family:Manrope,sans-serif; font-size:16px; font-weight:800; font-variant-numeric:tabular-nums; cursor:pointer">+10</button>
+              <input value="15" style="width:62px; background:#F1E4D0; border:1.5px solid #1F7A72; border-radius:10px; padding:12px 6px; font-family:Manrope,sans-serif; font-size:16px; font-weight:700; color:#3B2417; text-align:center; font-variant-numeric:tabular-nums">
+            </div>
+
+            <div style="background:#FBF6EC; border:1.5px solid #D9714E; border-radius:12px; padding:12px 14px; display:flex; flex-direction:column; gap:8px">
+              <div style="display:flex; align-items:center; gap:10px">
+                <span style="flex:1; font-size:16px; font-weight:600">Cafe kwatro</span>
+                <button style="background:#1F7A72; border:none; color:#FBF6EC; border-radius:10px; padding:12px 14px; min-width:66px; font-family:Manrope,sans-serif; font-size:16px; font-weight:800; font-variant-numeric:tabular-nums; cursor:pointer">+10</button>
+                <input value="120" style="width:62px; background:#F1E4D0; border:1.5px solid #D9714E; border-radius:10px; padding:12px 6px; font-family:Manrope,sans-serif; font-size:16px; font-weight:700; color:#D9714E; text-align:center; font-variant-numeric:tabular-nums">
+              </div>
+              <div style="font-size:13px; font-weight:600; color:#D9714E">Enter a whole number from 1 to 100</div>
+            </div>
+
+            <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:12px 14px; display:flex; align-items:center; gap:10px">
+              <span style="flex:1; font-size:16px; font-weight:600">Sundo squad</span>
+              <button style="background:#1F7A72; border:none; color:#FBF6EC; border-radius:10px; padding:12px 14px; min-width:66px; font-family:Manrope,sans-serif; font-size:16px; font-weight:800; font-variant-numeric:tabular-nums; cursor:pointer">+10</button>
+              <input placeholder="pts" style="width:62px; background:#F1E4D0; border:1.5px solid rgba(59,36,23,.25); border-radius:10px; padding:12px 6px; font-family:Manrope,sans-serif; font-size:16px; font-weight:700; color:#3B2417; text-align:center; font-variant-numeric:tabular-nums">
+            </div>
+          </div>
+
+          <div style="margin-top:auto; display:flex; flex-direction:column; gap:10px">
+            <div style="font-size:13px; color:#8A6A4A; text-align:center">Advances to R2-C1-Q5 when all teams are scored</div>
+            <button style="background:#1F7A72; border:none; color:#FBF6EC; border-radius:12px; padding:16px; font-family:Manrope,sans-serif; font-size:16px; font-weight:700; cursor:pointer">Save and next question</button>
+          </div>
+        </div>
+
+        <div style="flex:none; background:#3B2417; padding:10px 0 22px">
+          <div style="display:flex; gap:6px; padding:0 10px 8px; overflow:hidden">
+            <div style="flex:1; min-width:0; background:rgba(241,228,208,.1); border-radius:8px; padding:6px 7px; display:flex; flex-direction:column; gap:1px">
+              <span style="font-size:10px; color:rgba(241,228,208,.65); white-space:nowrap; overflow:hidden; text-overflow:ellipsis">Baybay boys</span>
+              <span style="font-size:15px; font-weight:800; color:#C98A2B; font-variant-numeric:tabular-nums; line-height:1.2">78</span>
+            </div>
+            <div style="flex:1; min-width:0; background:rgba(241,228,208,.1); border-radius:8px; padding:6px 7px; display:flex; flex-direction:column; gap:1px">
+              <span style="font-size:10px; color:rgba(241,228,208,.65); white-space:nowrap; overflow:hidden; text-overflow:ellipsis">Ana's crew</span>
+              <span style="font-size:15px; font-weight:800; color:#F1E4D0; font-variant-numeric:tabular-nums; line-height:1.2">81</span>
+            </div>
+            <div style="flex:1; min-width:0; background:rgba(241,228,208,.1); border-radius:8px; padding:6px 7px; display:flex; flex-direction:column; gap:1px">
+              <span style="font-size:10px; color:rgba(241,228,208,.65); white-space:nowrap; overflow:hidden; text-overflow:ellipsis">Team lampitaw</span>
+              <span style="font-size:15px; font-weight:800; color:#F1E4D0; font-variant-numeric:tabular-nums; line-height:1.2">65</span>
+            </div>
+            <div style="flex:1; min-width:0; background:rgba(241,228,208,.1); border-radius:8px; padding:6px 7px; display:flex; flex-direction:column; gap:1px">
+              <span style="font-size:10px; color:rgba(241,228,208,.65); white-space:nowrap; overflow:hidden; text-overflow:ellipsis">Cafe kwatro</span>
+              <span style="font-size:15px; font-weight:800; color:#F1E4D0; font-variant-numeric:tabular-nums; line-height:1.2">52</span>
+            </div>
+            <div style="flex:1; min-width:0; background:rgba(241,228,208,.1); border-radius:8px; padding:6px 7px; display:flex; flex-direction:column; gap:1px">
+              <span style="font-size:10px; color:rgba(241,228,208,.65); white-space:nowrap; overflow:hidden; text-overflow:ellipsis">Sundo squad</span>
+              <span style="font-size:15px; font-weight:800; color:#F1E4D0; font-variant-numeric:tabular-nums; line-height:1.2">44</span>
+            </div>
+          </div>
+          <div style="display:flex; border-top:1px solid rgba(241,228,208,.15)">
+            <div style="flex:1; padding:12px 4px; text-align:center; font-size:13px; font-weight:700; color:rgba(241,228,208,.8)">Home</div>
+            <div style="flex:1; padding:12px 4px; text-align:center; font-size:13px; font-weight:700; color:#C98A2B">Navigate</div>
+            <div style="flex:1; padding:12px 4px; text-align:center; font-size:13px; font-weight:700; color:rgba(241,228,208,.8)">Deduct</div>
+            <div style="flex:1; padding:12px 4px; text-align:center; font-size:13px; font-weight:700; color:rgba(241,228,208,.8)">Audit</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4b. EDIT PAST QUESTION -->
+    <div style="display:flex; flex-direction:column; gap:12px">
+      <div style="font-family:Fraunces,serif; font-size:19px; color:#3B2417">4b · Edit past score</div>
+      <div style="width:390px; height:844px; background:#F1E4D0; border-radius:28px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 10px 34px rgba(59,36,23,.18); color:#3B2417; position:relative">
+        <div style="height:56px; background:#3B2417; color:#F1E4D0; display:flex; align-items:center; justify-content:space-between; padding:0 16px; flex:none">
+          <span style="font-size:15px; font-weight:700">Home</span>
+          <span style="font-size:12px; color:rgba(241,228,208,.7)">Round 1 · Borongan basics</span>
+        </div>
+        <div style="flex:1; overflow:hidden; padding:16px; display:flex; flex-direction:column; gap:14px">
+          <div style="background:#FBF6EC; border:1px solid rgba(201,138,43,.5); border-radius:12px; padding:16px; display:flex; align-items:center; justify-content:space-between">
+            <div style="display:flex; flex-direction:column; gap:4px">
+              <div style="font-size:12px; font-weight:700; letter-spacing:.1em; color:#C98A2B">EDITING SCORED QUESTION</div>
+              <div style="font-family:Manrope,sans-serif; font-size:30px; font-weight:800; letter-spacing:.02em; font-variant-numeric:tabular-nums">R1-C1-Q3</div>
+            </div>
+            <div style="text-align:right; display:flex; flex-direction:column; gap:4px">
+              <div style="font-size:12px; color:#8A6A4A">Default</div>
+              <div style="font-size:22px; font-weight:800; color:#1F7A72; font-variant-numeric:tabular-nums">10 pts</div>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px">
+            <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:12px 14px; display:flex; align-items:center; gap:10px">
+              <span style="flex:1; font-size:16px; font-weight:600">Baybay boys</span>
+              <button style="background:#1F7A72; border:none; color:#FBF6EC; border-radius:10px; padding:12px 14px; min-width:66px; font-family:Manrope,sans-serif; font-size:16px; font-weight:800; font-variant-numeric:tabular-nums; cursor:pointer">+10</button>
+              <input value="10" style="width:62px; background:#F1E4D0; border:1.5px solid rgba(59,36,23,.25); border-radius:10px; padding:12px 6px; font-family:Manrope,sans-serif; font-size:16px; font-weight:700; color:#3B2417; text-align:center; font-variant-numeric:tabular-nums">
+            </div>
+            <div style="background:#FBF6EC; border:1.5px solid #C98A2B; border-radius:12px; padding:12px 14px; display:flex; align-items:center; gap:10px">
+              <span style="flex:1; font-size:16px; font-weight:600">Ana's crew</span>
+              <button style="background:#1F7A72; border:none; color:#FBF6EC; border-radius:10px; padding:12px 14px; min-width:66px; font-family:Manrope,sans-serif; font-size:16px; font-weight:800; font-variant-numeric:tabular-nums; cursor:pointer">+10</button>
+              <input value="8" style="width:62px; background:#F1E4D0; border:1.5px solid #C98A2B; border-radius:10px; padding:12px 6px; font-family:Manrope,sans-serif; font-size:16px; font-weight:700; color:#3B2417; text-align:center; font-variant-numeric:tabular-nums">
+            </div>
+            <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:12px 14px; display:flex; align-items:center; gap:10px">
+              <span style="flex:1; font-size:16px; font-weight:600">Team lampitaw</span>
+              <button style="background:#1F7A72; border:none; color:#FBF6EC; border-radius:10px; padding:12px 14px; min-width:66px; font-family:Manrope,sans-serif; font-size:16px; font-weight:800; font-variant-numeric:tabular-nums; cursor:pointer">+10</button>
+              <input value="0" style="width:62px; background:#F1E4D0; border:1.5px solid rgba(59,36,23,.25); border-radius:10px; padding:12px 6px; font-family:Manrope,sans-serif; font-size:16px; font-weight:700; color:#3B2417; text-align:center; font-variant-numeric:tabular-nums">
+            </div>
+          </div>
+        </div>
+        <div style="position:absolute; inset:0; background:rgba(59,36,23,.55); display:flex; align-items:flex-end">
+          <div style="width:100%; background:#FBF6EC; border-radius:20px 20px 28px 28px; padding:24px 20px 30px; display:flex; flex-direction:column; gap:16px">
+            <div style="font-family:Fraunces,serif; font-size:24px; color:#3B2417">Overwrite score?</div>
+            <div style="font-size:15px; color:#3B2417; line-height:1.5">Ana's crew on R1-C1-Q3 changes from <strong style="font-variant-numeric:tabular-nums">10</strong> to <strong style="font-variant-numeric:tabular-nums">8</strong>. The change is logged in the audit trail.</div>
+            <div style="display:flex; gap:12px">
+              <button style="flex:1; background:transparent; border:1.5px solid rgba(59,36,23,.35); color:#3B2417; border-radius:10px; padding:15px; font-family:Manrope,sans-serif; font-size:15px; font-weight:700; cursor:pointer">Cancel</button>
+              <button style="flex:1; background:#D9714E; border:none; color:#FBF6EC; border-radius:10px; padding:15px; font-family:Manrope,sans-serif; font-size:15px; font-weight:700; cursor:pointer">Overwrite</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. DEDUCTION -->
+    <div style="display:flex; flex-direction:column; gap:12px">
+      <div style="font-family:Fraunces,serif; font-size:19px; color:#3B2417">5 · Score deduction</div>
+      <div style="width:390px; height:844px; background:#F1E4D0; border-radius:28px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 10px 34px rgba(59,36,23,.18); color:#3B2417">
+        <div style="height:56px; background:#3B2417; color:#F1E4D0; display:flex; align-items:center; gap:12px; padding:0 16px; flex:none">
+          <span style="font-size:15px; font-weight:700">Home</span>
+          <span style="font-family:Fraunces,serif; font-size:18px; margin-left:auto; margin-right:auto">Deduct points</span>
+        </div>
+        <div style="flex:1; overflow:hidden; padding:16px; display:flex; flex-direction:column; gap:16px">
+          <div style="font-size:12px; font-weight:700; letter-spacing:.1em; color:#8A6A4A">SELECT TEAM</div>
+          <div style="display:flex; flex-direction:column; gap:8px">
+            <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:14px; display:flex; align-items:center; justify-content:space-between">
+              <span style="font-size:16px">Baybay boys</span>
+              <span style="font-size:16px; font-weight:800; color:#8A6A4A; font-variant-numeric:tabular-nums">78</span>
+            </div>
+            <div style="background:#FBF6EC; border:2px solid #D9714E; border-radius:12px; padding:14px; display:flex; align-items:center; justify-content:space-between">
+              <span style="font-size:16px; font-weight:700">Ana's crew</span>
+              <span style="font-size:16px; font-weight:800; color:#3B2417; font-variant-numeric:tabular-nums">71</span>
+            </div>
+            <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:14px; display:flex; align-items:center; justify-content:space-between">
+              <span style="font-size:16px">Team lampitaw</span>
+              <span style="font-size:16px; font-weight:800; color:#8A6A4A; font-variant-numeric:tabular-nums">65</span>
+            </div>
+            <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:14px; display:flex; align-items:center; justify-content:space-between">
+              <span style="font-size:16px">Cafe kwatro</span>
+              <span style="font-size:16px; font-weight:800; color:#8A6A4A; font-variant-numeric:tabular-nums">52</span>
+            </div>
+            <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:14px; display:flex; align-items:center; justify-content:space-between">
+              <span style="font-size:16px">Sundo squad</span>
+              <span style="font-size:16px; font-weight:800; color:#8A6A4A; font-variant-numeric:tabular-nums">44</span>
+            </div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:8px">
+            <div style="font-size:12px; font-weight:700; letter-spacing:.1em; color:#8A6A4A">POINTS TO DEDUCT</div>
+            <div style="display:flex; align-items:center; gap:10px">
+              <input value="5" style="width:110px; background:#FBF6EC; border:1.5px solid rgba(59,36,23,.25); border-radius:10px; padding:14px; font-family:Manrope,sans-serif; font-size:24px; font-weight:800; color:#3B2417; text-align:center; font-variant-numeric:tabular-nums">
+              <span style="font-size:13px; color:#8A6A4A">Whole number, 1–100</span>
+            </div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:8px">
+            <div style="font-size:12px; font-weight:700; letter-spacing:.1em; color:#8A6A4A">REASON (OPTIONAL)</div>
+            <input placeholder="Phone used during round" style="background:#FBF6EC; border:1.5px solid rgba(59,36,23,.25); border-radius:10px; padding:14px; font-family:Manrope,sans-serif; font-size:15px; color:#3B2417">
+          </div>
+
+          <div style="margin-top:auto; display:flex; flex-direction:column; gap:10px">
+            <div style="font-size:14px; color:#3B2417; text-align:center">Ana's crew: <strong style="font-variant-numeric:tabular-nums">71</strong> → <strong style="color:#D9714E; font-variant-numeric:tabular-nums">66</strong></div>
+            <button style="background:#D9714E; border:none; color:#FBF6EC; border-radius:12px; padding:16px; font-family:Manrope,sans-serif; font-size:16px; font-weight:700; cursor:pointer">Deduct 5 points</button>
+          </div>
+        </div>
+        <div style="flex:none; background:#3B2417; display:flex; border-top:1px solid rgba(241,228,208,.15); padding-bottom:22px">
+          <div style="flex:1; padding:12px 4px; text-align:center; font-size:13px; font-weight:700; color:rgba(241,228,208,.8)">Home</div>
+          <div style="flex:1; padding:12px 4px; text-align:center; font-size:13px; font-weight:700; color:rgba(241,228,208,.8)">Navigate</div>
+          <div style="flex:1; padding:12px 4px; text-align:center; font-size:13px; font-weight:700; color:#C98A2B">Deduct</div>
+          <div style="flex:1; padding:12px 4px; text-align:center; font-size:13px; font-weight:700; color:rgba(241,228,208,.8)">Audit</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. LEADERBOARD -->
+    <div style="display:flex; flex-direction:column; gap:12px">
+      <div style="font-family:Fraunces,serif; font-size:19px; color:#3B2417">6 · Leaderboard</div>
+      <div style="width:390px; height:844px; background:#F1E4D0; border-radius:28px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 10px 34px rgba(59,36,23,.18); color:#3B2417">
+        <div style="height:56px; background:#3B2417; color:#F1E4D0; display:flex; align-items:center; gap:12px; padding:0 16px; flex:none">
+          <span style="font-size:15px; font-weight:700">Home</span>
+          <span style="font-family:Fraunces,serif; font-size:18px; margin-left:auto; margin-right:auto">Leaderboard</span>
+        </div>
+        <div style="flex:1; overflow:hidden; padding:16px; display:flex; flex-direction:column; gap:14px">
+          <div style="display:flex; gap:6px; background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:10px; padding:4px">
+            <div style="flex:1; text-align:center; padding:9px 4px; border-radius:8px; background:#3B2417; color:#F1E4D0; font-size:13px; font-weight:700">Game</div>
+            <div style="flex:1; text-align:center; padding:9px 4px; border-radius:8px; font-size:13px; font-weight:700; color:#8A6A4A">Round</div>
+            <div style="flex:1; text-align:center; padding:9px 4px; border-radius:8px; font-size:13px; font-weight:700; color:#8A6A4A">Category</div>
+          </div>
+
+          <div style="background:#FBF6EC; border:2px solid #C98A2B; border-radius:12px; padding:18px; display:flex; align-items:center; gap:14px">
+            <div style="width:44px; height:44px; border-radius:50%; background:#C98A2B; color:#FBF6EC; display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:800; font-variant-numeric:tabular-nums; flex:none">1</div>
+            <div style="flex:1; display:flex; flex-direction:column; gap:3px">
+              <div style="font-size:19px; font-weight:700">Ana's crew</div>
+              <div style="font-size:12px; font-weight:700; letter-spacing:.08em; color:#C98A2B">LEADING</div>
+            </div>
+            <div style="font-size:34px; font-weight:800; font-variant-numeric:tabular-nums">81</div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:8px">
+            <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:15px; display:flex; align-items:center; gap:14px">
+              <div style="width:36px; text-align:center; font-size:17px; font-weight:800; color:#8A6A4A; font-variant-numeric:tabular-nums">2</div>
+              <div style="flex:1; font-size:17px; font-weight:600">Baybay boys</div>
+              <div style="font-size:26px; font-weight:800; font-variant-numeric:tabular-nums">78</div>
+            </div>
+            <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:15px; display:flex; align-items:center; gap:14px">
+              <div style="width:36px; text-align:center; font-size:17px; font-weight:800; color:#8A6A4A; font-variant-numeric:tabular-nums">3</div>
+              <div style="flex:1; font-size:17px; font-weight:600">Team lampitaw</div>
+              <div style="font-size:26px; font-weight:800; font-variant-numeric:tabular-nums">65</div>
+            </div>
+            <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:15px; display:flex; align-items:center; gap:14px">
+              <div style="width:36px; text-align:center; font-size:17px; font-weight:800; color:#8A6A4A; font-variant-numeric:tabular-nums">4</div>
+              <div style="flex:1; display:flex; flex-direction:column; gap:2px">
+                <div style="font-size:17px; font-weight:600">Cafe kwatro</div>
+                <div style="font-size:12px; color:#D9714E; font-weight:600">−5 deduction applied</div>
+              </div>
+              <div style="font-size:26px; font-weight:800; font-variant-numeric:tabular-nums">52</div>
+            </div>
+            <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:15px; display:flex; align-items:center; gap:14px">
+              <div style="width:36px; text-align:center; font-size:17px; font-weight:800; color:#8A6A4A; font-variant-numeric:tabular-nums">5</div>
+              <div style="flex:1; font-size:17px; font-weight:600">Sundo squad</div>
+              <div style="font-size:26px; font-weight:800; font-variant-numeric:tabular-nums">44</div>
+            </div>
+          </div>
+
+          <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:14px; display:flex; flex-direction:column; gap:10px">
+            <div style="font-size:12px; font-weight:700; letter-spacing:.1em; color:#8A6A4A">ANA'S CREW · BY ROUND</div>
+            <div style="display:flex; justify-content:space-between; font-size:14px"><span>Round 1 · Kasaysayan</span><span style="font-weight:700; font-variant-numeric:tabular-nums">38</span></div>
+            <div style="display:flex; justify-content:space-between; font-size:14px"><span>Round 2 · Pop culture</span><span style="font-weight:700; font-variant-numeric:tabular-nums">43</span></div>
+            <div style="display:flex; justify-content:space-between; font-size:14px; color:#8A6A4A"><span>Round 3 · Barako &amp; brew</span><span style="font-weight:700; font-variant-numeric:tabular-nums">0</span></div>
+          </div>
+        </div>
+        <div style="flex:none; background:#3B2417; display:flex; border-top:1px solid rgba(241,228,208,.15); padding-bottom:22px">
+          <div style="flex:1; padding:12px 4px; text-align:center; font-size:13px; font-weight:700; color:rgba(241,228,208,.8)">Home</div>
+          <div style="flex:1; padding:12px 4px; text-align:center; font-size:13px; font-weight:700; color:rgba(241,228,208,.8)">Navigate</div>
+          <div style="flex:1; padding:12px 4px; text-align:center; font-size:13px; font-weight:700; color:rgba(241,228,208,.8)">Deduct</div>
+          <div style="flex:1; padding:12px 4px; text-align:center; font-size:13px; font-weight:700; color:rgba(241,228,208,.8)">Audit</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. JOIN -->
+    <div style="display:flex; flex-direction:column; gap:12px">
+      <div style="font-family:Fraunces,serif; font-size:19px; color:#3B2417">7 · Join a session</div>
+      <div style="width:390px; height:844px; background:#F1E4D0; border-radius:28px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 10px 34px rgba(59,36,23,.18); color:#3B2417">
+        <div style="height:56px; background:#3B2417; color:#F1E4D0; display:flex; align-items:center; gap:12px; padding:0 16px; flex:none">
+          <span style="font-size:15px; font-weight:700">Back</span>
+          <span style="font-family:Fraunces,serif; font-size:18px; margin-left:auto; margin-right:auto">Join a session</span>
+        </div>
+        <div style="flex:1; padding:28px 24px; display:flex; flex-direction:column; gap:24px">
+          <div style="font-size:15px; color:#8A6A4A; line-height:1.5">Enter the code shown on the score tracker's home screen, or scan the QR code. You will join as a view-only viewer.</div>
+          <div style="display:flex; flex-direction:column; gap:10px">
+            <div style="font-size:12px; font-weight:700; letter-spacing:.1em; color:#8A6A4A">SESSION CODE</div>
+            <input value="BRGN-4417" style="background:#FBF6EC; border:1.5px solid rgba(59,36,23,.25); border-radius:12px; padding:18px; font-family:Manrope,sans-serif; font-size:26px; font-weight:800; letter-spacing:.1em; color:#3B2417; text-align:center; font-variant-numeric:tabular-nums">
+          </div>
+          <button style="background:#1F7A72; border:none; color:#FBF6EC; border-radius:12px; padding:17px; font-family:Manrope,sans-serif; font-size:16px; font-weight:700; cursor:pointer">Join</button>
+          <div style="display:flex; align-items:center; gap:12px">
+            <div style="flex:1; height:1px; background:rgba(59,36,23,.15)"></div>
+            <span style="font-size:12px; color:#8A6A4A">or</span>
+            <div style="flex:1; height:1px; background:rgba(59,36,23,.15)"></div>
+          </div>
+          <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:24px; display:flex; flex-direction:column; align-items:center; gap:14px">
+            <div style="width:150px; height:150px; border-radius:10px; background:repeating-linear-gradient(45deg,#8A6A4A 0 6px,#F1E4D0 6px 12px)"></div>
+            <button style="background:transparent; border:1.5px solid rgba(59,36,23,.35); color:#3B2417; border-radius:10px; padding:13px 20px; font-family:Manrope,sans-serif; font-size:15px; font-weight:700; cursor:pointer">Scan QR code</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. END SESSION -->
+    <div style="display:flex; flex-direction:column; gap:12px">
+      <div style="font-family:Fraunces,serif; font-size:19px; color:#3B2417">8 · End session</div>
+      <div style="width:390px; height:844px; background:#F1E4D0; border-radius:28px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 10px 34px rgba(59,36,23,.18); color:#3B2417; position:relative">
+        <div style="height:56px; background:#3B2417; color:#F1E4D0; display:flex; align-items:center; justify-content:space-between; padding:0 16px; flex:none">
+          <span style="font-family:Fraunces,serif; font-size:18px">Tigu-Tiguay</span>
+          <span style="font-size:12px; font-weight:700; letter-spacing:.08em; color:#C98A2B">SCORE TRACKER</span>
+        </div>
+        <div style="flex:1; padding:16px; display:flex; flex-direction:column; gap:12px; opacity:.5">
+          <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:14px; display:flex; align-items:center; gap:14px">
+            <div style="width:72px; height:72px; border-radius:8px; background:repeating-linear-gradient(45deg,#3B2417 0 4px,#FBF6EC 4px 8px); flex:none"></div>
+            <div style="display:flex; flex-direction:column; gap:4px">
+              <div style="font-size:12px; font-weight:700; letter-spacing:.1em; color:#8A6A4A">JOIN CODE</div>
+              <div style="font-size:26px; font-weight:800; letter-spacing:.06em; font-variant-numeric:tabular-nums">BRGN-4417</div>
+            </div>
+          </div>
+          <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; height:120px"></div>
+          <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; height:120px"></div>
+        </div>
+        <div style="position:absolute; inset:0; background:rgba(59,36,23,.55); display:flex; align-items:center; justify-content:center; padding:20px">
+          <div style="width:100%; background:#FBF6EC; border-radius:16px; padding:24px; display:flex; flex-direction:column; gap:16px">
+            <div style="font-family:Fraunces,serif; font-size:26px; color:#3B2417">End session?</div>
+            <div style="font-size:15px; color:#3B2417; line-height:1.55">Scores lock and no further edits are possible. The leaderboard and audit trail stay viewable.</div>
+            <div style="background:#F1E4D0; border-radius:10px; padding:14px; display:flex; flex-direction:column; gap:8px">
+              <div style="display:flex; justify-content:space-between; font-size:14px"><span style="color:#8A6A4A">Questions scored</span><span style="font-weight:700; font-variant-numeric:tabular-nums">14 of 33</span></div>
+              <div style="display:flex; justify-content:space-between; font-size:14px"><span style="color:#8A6A4A">Unscored count as</span><span style="font-weight:700; font-variant-numeric:tabular-nums">0 points</span></div>
+              <div style="display:flex; justify-content:space-between; font-size:14px"><span style="color:#8A6A4A">Current leader</span><span style="font-weight:700">Ana's crew · 81</span></div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:10px">
+              <button style="background:#D9714E; border:none; color:#FBF6EC; border-radius:10px; padding:16px; font-family:Manrope,sans-serif; font-size:16px; font-weight:700; cursor:pointer">End session</button>
+              <button style="background:transparent; border:1.5px solid rgba(59,36,23,.35); color:#3B2417; border-radius:10px; padding:16px; font-family:Manrope,sans-serif; font-size:16px; font-weight:700; cursor:pointer">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. PAST SESSIONS -->
+    <div style="display:flex; flex-direction:column; gap:12px">
+      <div style="font-family:Fraunces,serif; font-size:19px; color:#3B2417">9 · Past sessions</div>
+      <div style="width:390px; height:844px; background:#F1E4D0; border-radius:28px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 10px 34px rgba(59,36,23,.18); color:#3B2417">
+        <div style="height:56px; background:#3B2417; color:#F1E4D0; display:flex; align-items:center; gap:12px; padding:0 16px; flex:none">
+          <span style="font-size:15px; font-weight:700">Back</span>
+          <span style="font-family:Fraunces,serif; font-size:18px; margin-left:auto; margin-right:auto">Past sessions</span>
+        </div>
+        <div style="flex:1; padding:16px; display:flex; flex-direction:column; gap:10px">
+          <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:16px; display:flex; flex-direction:column; gap:8px">
+            <div style="display:flex; align-items:baseline; justify-content:space-between">
+              <div style="font-family:Fraunces,serif; font-size:18px">Trivia night · 29 Aug</div>
+              <div style="font-size:12px; color:#8A6A4A; font-variant-numeric:tabular-nums">BRGN-4392</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px">
+              <span style="font-size:14px; color:#8A6A4A">Winner</span>
+              <span style="font-size:14px; font-weight:700; color:#C98A2B">Team lampitaw · 96</span>
+            </div>
+            <div style="font-size:13px; color:#8A6A4A; font-variant-numeric:tabular-nums">5 teams · 3 rounds · 30 questions</div>
+          </div>
+          <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:16px; display:flex; flex-direction:column; gap:8px">
+            <div style="display:flex; align-items:baseline; justify-content:space-between">
+              <div style="font-family:Fraunces,serif; font-size:18px">Trivia night · 22 Aug</div>
+              <div style="font-size:12px; color:#8A6A4A; font-variant-numeric:tabular-nums">BRGN-4310</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px">
+              <span style="font-size:14px; color:#8A6A4A">Winner</span>
+              <span style="font-size:14px; font-weight:700; color:#C98A2B">Cafe kwatro · 88</span>
+            </div>
+            <div style="font-size:13px; color:#8A6A4A; font-variant-numeric:tabular-nums">4 teams · 3 rounds · 30 questions</div>
+          </div>
+          <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:16px; display:flex; flex-direction:column; gap:8px">
+            <div style="display:flex; align-items:baseline; justify-content:space-between">
+              <div style="font-family:Fraunces,serif; font-size:18px">Trivia night · 15 Aug</div>
+              <div style="font-size:12px; color:#8A6A4A; font-variant-numeric:tabular-nums">BRGN-4288</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px">
+              <span style="font-size:14px; color:#8A6A4A">Winner</span>
+              <span style="font-size:14px; font-weight:700; color:#C98A2B">Baybay boys · 104</span>
+            </div>
+            <div style="font-size:13px; color:#8A6A4A; font-variant-numeric:tabular-nums">6 teams · 4 rounds · 42 questions</div>
+          </div>
+          <div style="margin-top:8px; font-size:13px; color:#8A6A4A; text-align:center">Ended sessions are view-only</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. AUDIT TRAIL -->
+    <div style="display:flex; flex-direction:column; gap:12px">
+      <div style="font-family:Fraunces,serif; font-size:19px; color:#3B2417">10 · Audit trail</div>
+      <div style="width:390px; height:844px; background:#F1E4D0; border-radius:28px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 10px 34px rgba(59,36,23,.18); color:#3B2417">
+        <div style="height:56px; background:#3B2417; color:#F1E4D0; display:flex; align-items:center; gap:12px; padding:0 16px; flex:none">
+          <span style="font-size:15px; font-weight:700">Home</span>
+          <span style="font-family:Fraunces,serif; font-size:18px; margin-left:auto; margin-right:auto">Audit trail</span>
+        </div>
+        <div style="flex:1; overflow:hidden; padding:14px 16px; display:flex; flex-direction:column; gap:12px">
+          <div style="display:flex; gap:8px; flex-wrap:wrap">
+            <div style="background:#3B2417; color:#F1E4D0; border-radius:16px; padding:7px 12px; font-size:13px; font-weight:700">Round 2</div>
+            <div style="background:transparent; border:1.5px solid rgba(59,36,23,.3); color:#3B2417; border-radius:16px; padding:7px 12px; font-size:13px; font-weight:600">Category</div>
+            <div style="background:transparent; border:1.5px solid rgba(59,36,23,.3); color:#3B2417; border-radius:16px; padding:7px 12px; font-size:13px; font-weight:600">Question</div>
+            <div style="background:transparent; border:1.5px solid rgba(59,36,23,.3); color:#3B2417; border-radius:16px; padding:7px 12px; font-size:13px; font-weight:600">Team</div>
+          </div>
+          <div style="font-size:12px; color:#8A6A4A; font-variant-numeric:tabular-nums">18 changes · newest first</div>
+          <div style="display:flex; flex-direction:column; gap:8px">
+            <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:13px 14px; display:flex; align-items:center; gap:12px">
+              <div style="flex:1; display:flex; flex-direction:column; gap:3px">
+                <div style="font-size:15px; font-weight:600">Ana's crew</div>
+                <div style="font-size:12px; color:#8A6A4A; font-variant-numeric:tabular-nums">R2-C1-Q4 · Movies · 20:41</div>
+              </div>
+              <div style="font-size:19px; font-weight:800; color:#1F7A72; font-variant-numeric:tabular-nums">+10</div>
+            </div>
+            <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:13px 14px; display:flex; align-items:center; gap:12px">
+              <div style="flex:1; display:flex; flex-direction:column; gap:3px">
+                <div style="font-size:15px; font-weight:600">Cafe kwatro</div>
+                <div style="font-size:12px; color:#8A6A4A">Deduction · phone used · 20:38</div>
+              </div>
+              <div style="font-size:19px; font-weight:800; color:#D9714E; font-variant-numeric:tabular-nums">−5</div>
+            </div>
+            <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:13px 14px; display:flex; align-items:center; gap:12px">
+              <div style="flex:1; display:flex; flex-direction:column; gap:3px">
+                <div style="font-size:15px; font-weight:600">Team lampitaw</div>
+                <div style="font-size:12px; color:#8A6A4A; font-variant-numeric:tabular-nums">R2-C1-Q3 · Movies · 20:36</div>
+              </div>
+              <div style="font-size:19px; font-weight:800; color:#1F7A72; font-variant-numeric:tabular-nums">+15</div>
+            </div>
+            <div style="background:#FBF6EC; border:1px solid rgba(201,138,43,.5); border-radius:12px; padding:13px 14px; display:flex; align-items:center; gap:12px">
+              <div style="flex:1; display:flex; flex-direction:column; gap:3px">
+                <div style="font-size:15px; font-weight:600">Ana's crew</div>
+                <div style="font-size:12px; color:#8A6A4A; font-variant-numeric:tabular-nums">R1-C1-Q3 · edited from 10 · 20:31</div>
+              </div>
+              <div style="font-size:19px; font-weight:800; color:#C98A2B; font-variant-numeric:tabular-nums">8</div>
+            </div>
+            <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:13px 14px; display:flex; align-items:center; gap:12px">
+              <div style="flex:1; display:flex; flex-direction:column; gap:3px">
+                <div style="font-size:15px; font-weight:600">Baybay boys</div>
+                <div style="font-size:12px; color:#8A6A4A; font-variant-numeric:tabular-nums">R2-C1-Q2 · Movies · 20:28</div>
+              </div>
+              <div style="font-size:19px; font-weight:800; color:#1F7A72; font-variant-numeric:tabular-nums">+10</div>
+            </div>
+            <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:13px 14px; display:flex; align-items:center; gap:12px">
+              <div style="flex:1; display:flex; flex-direction:column; gap:3px">
+                <div style="font-size:15px; font-weight:600">Sundo squad</div>
+                <div style="font-size:12px; color:#8A6A4A; font-variant-numeric:tabular-nums">R2-C1-Q1 · Movies · 20:24</div>
+              </div>
+              <div style="font-size:19px; font-weight:800; color:#1F7A72; font-variant-numeric:tabular-nums">+10</div>
+            </div>
+          </div>
+        </div>
+        <div style="flex:none; background:#3B2417; display:flex; border-top:1px solid rgba(241,228,208,.15); padding-bottom:22px">
+          <div style="flex:1; padding:12px 4px; text-align:center; font-size:13px; font-weight:700; color:rgba(241,228,208,.8)">Home</div>
+          <div style="flex:1; padding:12px 4px; text-align:center; font-size:13px; font-weight:700; color:rgba(241,228,208,.8)">Navigate</div>
+          <div style="flex:1; padding:12px 4px; text-align:center; font-size:13px; font-weight:700; color:rgba(241,228,208,.8)">Deduct</div>
+          <div style="flex:1; padding:12px 4px; text-align:center; font-size:13px; font-weight:700; color:#C98A2B">Audit</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NAVIGATE SHEET -->
+    <div style="display:flex; flex-direction:column; gap:12px">
+      <div style="font-family:Fraunces,serif; font-size:19px; color:#3B2417">Pane · Navigate</div>
+      <div style="width:390px; height:844px; background:#F1E4D0; border-radius:28px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 10px 34px rgba(59,36,23,.18); color:#3B2417; position:relative">
+        <div style="height:56px; background:#3B2417; color:#F1E4D0; display:flex; align-items:center; justify-content:space-between; padding:0 16px; flex:none">
+          <span style="font-size:15px; font-weight:700">Home</span>
+          <span style="font-size:12px; color:rgba(241,228,208,.7)">Round 2 · Movies</span>
+        </div>
+        <div style="flex:1; padding:16px; opacity:.35; display:flex; flex-direction:column; gap:12px">
+          <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; height:96px"></div>
+          <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; height:64px"></div>
+          <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; height:64px"></div>
+        </div>
+        <div style="position:absolute; inset:0; background:rgba(59,36,23,.5); display:flex; align-items:flex-end">
+          <div style="width:100%; max-height:660px; background:#FBF6EC; border-radius:20px 20px 28px 28px; padding:20px 18px 28px; display:flex; flex-direction:column; gap:14px; overflow:hidden">
+            <div style="display:flex; align-items:center; justify-content:space-between">
+              <div style="font-family:Fraunces,serif; font-size:22px">Navigate</div>
+              <div style="font-size:13px; font-weight:700; color:#8A6A4A">Close</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:14px; font-size:12px; color:#8A6A4A">
+              <div style="display:flex; align-items:center; gap:6px"><div style="width:9px; height:9px; border-radius:50%; background:#1F7A72"></div>Scored</div>
+              <div style="display:flex; align-items:center; gap:6px"><div style="width:9px; height:9px; border-radius:50%; background:transparent; border:1.5px solid rgba(59,36,23,.3)"></div>Unanswered</div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:12px">
+              <div style="display:flex; flex-direction:column; gap:8px">
+                <div style="font-family:Fraunces,serif; font-size:16px">Round 1 · Kasaysayan</div>
+                <div style="display:flex; flex-direction:column; gap:8px">
+                  <div style="display:flex; align-items:center; gap:10px; background:#F1E4D0; border-radius:8px; padding:10px 12px">
+                    <span style="flex:1; font-size:14px">Borongan basics</span>
+                    <div style="display:flex; gap:5px">
+                      <div style="width:9px; height:9px; border-radius:50%; background:#1F7A72"></div>
+                      <div style="width:9px; height:9px; border-radius:50%; background:#1F7A72"></div>
+                      <div style="width:9px; height:9px; border-radius:50%; background:#1F7A72"></div>
+                      <div style="width:9px; height:9px; border-radius:50%; background:#1F7A72"></div>
+                      <div style="width:9px; height:9px; border-radius:50%; background:#1F7A72"></div>
+                    </div>
+                  </div>
+                  <div style="display:flex; align-items:center; gap:10px; background:#F1E4D0; border-radius:8px; padding:10px 12px">
+                    <span style="flex:1; font-size:14px">Eastern Samar landmarks</span>
+                    <div style="display:flex; gap:5px">
+                      <div style="width:9px; height:9px; border-radius:50%; background:#1F7A72"></div>
+                      <div style="width:9px; height:9px; border-radius:50%; background:#1F7A72"></div>
+                      <div style="width:9px; height:9px; border-radius:50%; background:#1F7A72"></div>
+                      <div style="width:9px; height:9px; border-radius:50%; background:#1F7A72"></div>
+                      <div style="width:9px; height:9px; border-radius:50%; background:#1F7A72"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="display:flex; flex-direction:column; gap:8px">
+                <div style="font-family:Fraunces,serif; font-size:16px">Round 2 · Pop culture</div>
+                <div style="display:flex; flex-direction:column; gap:8px">
+                  <div style="background:#F1E4D0; border:1.5px solid #1F7A72; border-radius:8px; padding:10px 12px; display:flex; flex-direction:column; gap:10px">
+                    <div style="display:flex; align-items:center"><span style="flex:1; font-size:14px; font-weight:700">Movies</span><span style="font-size:12px; color:#1F7A72; font-weight:700; font-variant-numeric:tabular-nums">4 / 5</span></div>
+                    <div style="display:flex; gap:8px">
+                      <div style="flex:1; text-align:center; padding:8px 0; border-radius:6px; background:rgba(31,122,114,.15); color:#1F7A72; font-size:13px; font-weight:700; font-variant-numeric:tabular-nums">Q1</div>
+                      <div style="flex:1; text-align:center; padding:8px 0; border-radius:6px; background:rgba(31,122,114,.15); color:#1F7A72; font-size:13px; font-weight:700; font-variant-numeric:tabular-nums">Q2</div>
+                      <div style="flex:1; text-align:center; padding:8px 0; border-radius:6px; background:rgba(31,122,114,.15); color:#1F7A72; font-size:13px; font-weight:700; font-variant-numeric:tabular-nums">Q3</div>
+                      <div style="flex:1; text-align:center; padding:8px 0; border-radius:6px; background:#3B2417; color:#F1E4D0; font-size:13px; font-weight:700; font-variant-numeric:tabular-nums">Q4</div>
+                      <div style="flex:1; text-align:center; padding:8px 0; border-radius:6px; border:1.5px solid rgba(59,36,23,.2); color:#8A6A4A; font-size:13px; font-weight:700; font-variant-numeric:tabular-nums">Q5</div>
+                    </div>
+                  </div>
+                  <div style="display:flex; align-items:center; gap:10px; background:#F1E4D0; border-radius:8px; padding:10px 12px">
+                    <span style="flex:1; font-size:14px">OPM music</span>
+                    <div style="display:flex; gap:5px">
+                      <div style="width:9px; height:9px; border-radius:50%; border:1.5px solid rgba(59,36,23,.3)"></div>
+                      <div style="width:9px; height:9px; border-radius:50%; border:1.5px solid rgba(59,36,23,.3)"></div>
+                      <div style="width:9px; height:9px; border-radius:50%; border:1.5px solid rgba(59,36,23,.3)"></div>
+                      <div style="width:9px; height:9px; border-radius:50%; border:1.5px solid rgba(59,36,23,.3)"></div>
+                      <div style="width:9px; height:9px; border-radius:50%; border:1.5px solid rgba(59,36,23,.3)"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="display:flex; flex-direction:column; gap:8px">
+                <div style="font-family:Fraunces,serif; font-size:16px">Round 3 · Barako &amp; brew</div>
+                <div style="display:flex; align-items:center; gap:10px; background:#F1E4D0; border-radius:8px; padding:10px 12px">
+                  <span style="flex:1; font-size:14px">Coffee origins</span>
+                  <span style="font-size:12px; color:#8A6A4A; font-variant-numeric:tabular-nums">0 / 5</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ DESKTOP ============ -->
+  <sc-if value="{{ showDesktop }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex; flex-direction:column; gap:40px">
+      <div style="display:flex; flex-direction:column; gap:12px">
+        <div style="font-family:Fraunces,serif; font-size:19px; color:#3B2417">4 · Live scoring — desktop / projector</div>
+        <div style="width:1280px; height:800px; background:#F1E4D0; border-radius:16px; overflow:hidden; display:flex; box-shadow:0 10px 34px rgba(59,36,23,.18); color:#3B2417">
+          <div style="width:268px; flex:none; background:#3B2417; color:#F1E4D0; display:flex; flex-direction:column">
+            <div style="padding:20px 18px; border-bottom:1px solid rgba(241,228,208,.15); display:flex; flex-direction:column; gap:4px">
+              <div style="font-family:Fraunces,serif; font-size:20px">Tigu-Tiguay</div>
+              <div style="font-size:12px; color:rgba(241,228,208,.6); font-variant-numeric:tabular-nums">BRGN-4417</div>
+            </div>
+            <div style="padding:14px 18px; display:flex; flex-direction:column; gap:4px">
+              <div style="padding:9px 10px; border-radius:8px; font-size:14px; font-weight:700; color:rgba(241,228,208,.85)">Home</div>
+              <div style="padding:9px 10px; border-radius:8px; font-size:14px; font-weight:700; color:rgba(241,228,208,.85)">Leaderboard</div>
+              <div style="padding:9px 10px; border-radius:8px; font-size:14px; font-weight:700; color:#D9714E">Deduct points</div>
+              <div style="padding:9px 10px; border-radius:8px; font-size:14px; font-weight:700; color:rgba(241,228,208,.85)">Audit trail</div>
+            </div>
+            <div style="flex:1; overflow:hidden; padding:6px 18px 14px; display:flex; flex-direction:column; gap:12px; border-top:1px solid rgba(241,228,208,.15)">
+              <div style="padding-top:12px; font-size:11px; font-weight:700; letter-spacing:.12em; color:rgba(241,228,208,.5)">NAVIGATE</div>
+              <div style="display:flex; flex-direction:column; gap:6px">
+                <div style="font-family:Fraunces,serif; font-size:14px; color:#F1E4D0">Round 1 · Kasaysayan</div>
+                <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:rgba(241,228,208,.7)"><div style="width:8px; height:8px; border-radius:50%; background:#1F7A72"></div>Borongan basics</div>
+                <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:rgba(241,228,208,.7)"><div style="width:8px; height:8px; border-radius:50%; background:#1F7A72"></div>Eastern Samar landmarks</div>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:6px">
+                <div style="font-family:Fraunces,serif; font-size:14px; color:#F1E4D0">Round 2 · Pop culture</div>
+                <div style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:#C98A2B"><div style="width:8px; height:8px; border-radius:50%; background:#C98A2B"></div>Movies</div>
+                <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:rgba(241,228,208,.7)"><div style="width:8px; height:8px; border-radius:50%; border:1.5px solid rgba(241,228,208,.4)"></div>OPM music</div>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:6px">
+                <div style="font-family:Fraunces,serif; font-size:14px; color:#F1E4D0">Round 3 · Barako &amp; brew</div>
+                <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:rgba(241,228,208,.7)"><div style="width:8px; height:8px; border-radius:50%; border:1.5px solid rgba(241,228,208,.4)"></div>Coffee origins</div>
+                <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:rgba(241,228,208,.7)"><div style="width:8px; height:8px; border-radius:50%; border:1.5px solid rgba(241,228,208,.4)"></div>Brew methods</div>
+              </div>
+            </div>
+            <div style="padding:14px 18px 18px; border-top:1px solid rgba(241,228,208,.15); display:flex; flex-direction:column; gap:8px">
+              <div style="font-size:11px; font-weight:700; letter-spacing:.12em; color:rgba(241,228,208,.5)">RUNNING TOTALS</div>
+              <div style="display:flex; justify-content:space-between; font-size:14px"><span style="color:#C98A2B; font-weight:700">Ana's crew</span><span style="color:#C98A2B; font-weight:800; font-variant-numeric:tabular-nums">81</span></div>
+              <div style="display:flex; justify-content:space-between; font-size:14px"><span style="color:rgba(241,228,208,.85)">Baybay boys</span><span style="font-weight:800; font-variant-numeric:tabular-nums">78</span></div>
+              <div style="display:flex; justify-content:space-between; font-size:14px"><span style="color:rgba(241,228,208,.85)">Team lampitaw</span><span style="font-weight:800; font-variant-numeric:tabular-nums">65</span></div>
+              <div style="display:flex; justify-content:space-between; font-size:14px"><span style="color:rgba(241,228,208,.85)">Cafe kwatro</span><span style="font-weight:800; font-variant-numeric:tabular-nums">52</span></div>
+              <div style="display:flex; justify-content:space-between; font-size:14px"><span style="color:rgba(241,228,208,.85)">Sundo squad</span><span style="font-weight:800; font-variant-numeric:tabular-nums">44</span></div>
+            </div>
+          </div>
+
+          <div style="flex:1; display:flex; flex-direction:column; overflow:hidden">
+            <div style="padding:26px 32px 18px; display:flex; align-items:flex-end; justify-content:space-between; border-bottom:1px solid rgba(59,36,23,.1)">
+              <div style="display:flex; flex-direction:column; gap:6px">
+                <div style="font-size:12px; font-weight:700; letter-spacing:.12em; color:#8A6A4A">ROUND 2 · MOVIES · QUESTION</div>
+                <div style="font-size:44px; font-weight:800; letter-spacing:.01em; font-variant-numeric:tabular-nums; line-height:1">R2-C1-Q4</div>
+              </div>
+              <div style="display:flex; align-items:center; gap:24px">
+                <div style="text-align:right"><div style="font-size:12px; color:#8A6A4A">Default</div><div style="font-size:24px; font-weight:800; color:#1F7A72; font-variant-numeric:tabular-nums">10 pts</div></div>
+                <div style="text-align:right"><div style="font-size:12px; color:#8A6A4A">Progress</div><div style="font-size:24px; font-weight:800; font-variant-numeric:tabular-nums">14 / 33</div></div>
+              </div>
+            </div>
+
+            <div style="flex:1; padding:22px 32px; display:grid; grid-template-columns:repeat(5, minmax(0,1fr)); gap:16px; align-content:start">
+              <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:18px; display:flex; flex-direction:column; gap:16px">
+                <div style="display:flex; flex-direction:column; gap:4px">
+                  <div style="font-size:17px; font-weight:700">Baybay boys</div>
+                  <div style="font-size:12px; color:#8A6A4A; font-variant-numeric:tabular-nums">Total 78</div>
+                </div>
+                <button style="background:#1F7A72; border:none; color:#FBF6EC; border-radius:10px; padding:22px 0; font-family:Manrope,sans-serif; font-size:24px; font-weight:800; font-variant-numeric:tabular-nums; cursor:pointer">+10</button>
+                <input placeholder="pts" style="background:#F1E4D0; border:1.5px solid rgba(59,36,23,.25); border-radius:10px; padding:12px; font-family:Manrope,sans-serif; font-size:17px; font-weight:700; color:#3B2417; text-align:center; font-variant-numeric:tabular-nums">
+              </div>
+              <div style="background:#FBF6EC; border:1.5px solid #1F7A72; border-radius:12px; padding:18px; display:flex; flex-direction:column; gap:16px">
+                <div style="display:flex; flex-direction:column; gap:4px">
+                  <div style="font-size:17px; font-weight:700">Ana's crew</div>
+                  <div style="font-size:12px; color:#1F7A72; font-weight:700; font-variant-numeric:tabular-nums">Scored +10</div>
+                </div>
+                <div style="background:rgba(31,122,114,.12); color:#1F7A72; border-radius:10px; padding:22px 0; text-align:center; font-size:24px; font-weight:800; font-variant-numeric:tabular-nums">+10</div>
+                <div style="text-align:center; font-size:13px; font-weight:700; color:#1F7A72; padding:12px 0">Tap to change</div>
+              </div>
+              <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:18px; display:flex; flex-direction:column; gap:16px">
+                <div style="display:flex; flex-direction:column; gap:4px">
+                  <div style="font-size:17px; font-weight:700">Team lampitaw</div>
+                  <div style="font-size:12px; color:#8A6A4A; font-variant-numeric:tabular-nums">Total 65</div>
+                </div>
+                <button style="background:#1F7A72; border:none; color:#FBF6EC; border-radius:10px; padding:22px 0; font-family:Manrope,sans-serif; font-size:24px; font-weight:800; font-variant-numeric:tabular-nums; cursor:pointer">+10</button>
+                <input value="15" style="background:#F1E4D0; border:1.5px solid #1F7A72; border-radius:10px; padding:12px; font-family:Manrope,sans-serif; font-size:17px; font-weight:700; color:#3B2417; text-align:center; font-variant-numeric:tabular-nums">
+              </div>
+              <div style="background:#FBF6EC; border:1.5px solid #D9714E; border-radius:12px; padding:18px; display:flex; flex-direction:column; gap:10px">
+                <div style="display:flex; flex-direction:column; gap:4px">
+                  <div style="font-size:17px; font-weight:700">Cafe kwatro</div>
+                  <div style="font-size:12px; color:#8A6A4A; font-variant-numeric:tabular-nums">Total 52</div>
+                </div>
+                <button style="background:#1F7A72; border:none; color:#FBF6EC; border-radius:10px; padding:22px 0; font-family:Manrope,sans-serif; font-size:24px; font-weight:800; font-variant-numeric:tabular-nums; cursor:pointer">+10</button>
+                <input value="120" style="background:#F1E4D0; border:1.5px solid #D9714E; border-radius:10px; padding:12px; font-family:Manrope,sans-serif; font-size:17px; font-weight:700; color:#D9714E; text-align:center; font-variant-numeric:tabular-nums">
+                <div style="font-size:12px; font-weight:600; color:#D9714E">Enter 1–100</div>
+              </div>
+              <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:18px; display:flex; flex-direction:column; gap:16px">
+                <div style="display:flex; flex-direction:column; gap:4px">
+                  <div style="font-size:17px; font-weight:700">Sundo squad</div>
+                  <div style="font-size:12px; color:#8A6A4A; font-variant-numeric:tabular-nums">Total 44</div>
+                </div>
+                <button style="background:#1F7A72; border:none; color:#FBF6EC; border-radius:10px; padding:22px 0; font-family:Manrope,sans-serif; font-size:24px; font-weight:800; font-variant-numeric:tabular-nums; cursor:pointer">+10</button>
+                <input placeholder="pts" style="background:#F1E4D0; border:1.5px solid rgba(59,36,23,.25); border-radius:10px; padding:12px; font-family:Manrope,sans-serif; font-size:17px; font-weight:700; color:#3B2417; text-align:center; font-variant-numeric:tabular-nums">
+              </div>
+            </div>
+
+            <div style="padding:18px 32px 26px; border-top:1px solid rgba(59,36,23,.1); display:flex; align-items:center; justify-content:space-between">
+              <div style="font-size:14px; color:#8A6A4A">Advances to R2-C1-Q5 when all teams are scored</div>
+              <div style="display:flex; gap:12px">
+                <button style="background:transparent; border:1.5px solid rgba(59,36,23,.3); color:#3B2417; border-radius:10px; padding:14px 22px; font-family:Manrope,sans-serif; font-size:15px; font-weight:700; cursor:pointer">Previous</button>
+                <button style="background:#1F7A72; border:none; color:#FBF6EC; border-radius:10px; padding:14px 28px; font-family:Manrope,sans-serif; font-size:15px; font-weight:700; cursor:pointer">Save and next question</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:12px">
+        <div style="font-family:Fraunces,serif; font-size:19px; color:#3B2417">6 · Leaderboard — desktop / projector</div>
+        <div style="width:1280px; height:800px; background:#F1E4D0; border-radius:16px; overflow:hidden; display:flex; box-shadow:0 10px 34px rgba(59,36,23,.18); color:#3B2417">
+          <div style="width:268px; flex:none; background:#3B2417; color:#F1E4D0; display:flex; flex-direction:column">
+            <div style="padding:20px 18px; border-bottom:1px solid rgba(241,228,208,.15); display:flex; flex-direction:column; gap:4px">
+              <div style="font-family:Fraunces,serif; font-size:20px">Tigu-Tiguay</div>
+              <div style="font-size:12px; color:rgba(241,228,208,.6); font-variant-numeric:tabular-nums">BRGN-4417</div>
+            </div>
+            <div style="padding:14px 18px; display:flex; flex-direction:column; gap:4px">
+              <div style="padding:9px 10px; border-radius:8px; font-size:14px; font-weight:700; color:rgba(241,228,208,.85)">Home</div>
+              <div style="padding:9px 10px; border-radius:8px; background:rgba(241,228,208,.12); font-size:14px; font-weight:700; color:#C98A2B">Leaderboard</div>
+              <div style="padding:9px 10px; border-radius:8px; font-size:14px; font-weight:700; color:#D9714E">Deduct points</div>
+              <div style="padding:9px 10px; border-radius:8px; font-size:14px; font-weight:700; color:rgba(241,228,208,.85)">Audit trail</div>
+            </div>
+            <div style="flex:1"></div>
+            <div style="padding:14px 18px 18px; border-top:1px solid rgba(241,228,208,.15); display:flex; flex-direction:column; gap:8px">
+              <div style="font-size:11px; font-weight:700; letter-spacing:.12em; color:rgba(241,228,208,.5)">RUNNING TOTALS</div>
+              <div style="display:flex; justify-content:space-between; font-size:14px"><span style="color:#C98A2B; font-weight:700">Ana's crew</span><span style="color:#C98A2B; font-weight:800; font-variant-numeric:tabular-nums">81</span></div>
+              <div style="display:flex; justify-content:space-between; font-size:14px"><span style="color:rgba(241,228,208,.85)">Baybay boys</span><span style="font-weight:800; font-variant-numeric:tabular-nums">78</span></div>
+              <div style="display:flex; justify-content:space-between; font-size:14px"><span style="color:rgba(241,228,208,.85)">Team lampitaw</span><span style="font-weight:800; font-variant-numeric:tabular-nums">65</span></div>
+              <div style="display:flex; justify-content:space-between; font-size:14px"><span style="color:rgba(241,228,208,.85)">Cafe kwatro</span><span style="font-weight:800; font-variant-numeric:tabular-nums">52</span></div>
+              <div style="display:flex; justify-content:space-between; font-size:14px"><span style="color:rgba(241,228,208,.85)">Sundo squad</span><span style="font-weight:800; font-variant-numeric:tabular-nums">44</span></div>
+            </div>
+          </div>
+
+          <div style="flex:1; display:flex; flex-direction:column; overflow:hidden">
+            <div style="padding:26px 32px 18px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(59,36,23,.1)">
+              <div style="font-family:Fraunces,serif; font-size:34px; font-weight:600">Leaderboard</div>
+              <div style="display:flex; gap:6px; background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:10px; padding:4px">
+                <div style="padding:9px 18px; border-radius:8px; background:#3B2417; color:#F1E4D0; font-size:14px; font-weight:700">Game</div>
+                <div style="padding:9px 18px; border-radius:8px; font-size:14px; font-weight:700; color:#8A6A4A">Per round</div>
+                <div style="padding:9px 18px; border-radius:8px; font-size:14px; font-weight:700; color:#8A6A4A">Per category</div>
+              </div>
+            </div>
+
+            <div style="flex:1; overflow:hidden; padding:22px 32px; display:flex; flex-direction:column; gap:12px">
+              <div style="display:grid; grid-template-columns:64px minmax(0,1fr) 110px 110px 110px 120px; gap:12px; padding:0 18px; font-size:11px; font-weight:700; letter-spacing:.1em; color:#8A6A4A">
+                <div>RANK</div><div>TEAM</div><div style="text-align:right">ROUND 1</div><div style="text-align:right">ROUND 2</div><div style="text-align:right">ROUND 3</div><div style="text-align:right">TOTAL</div>
+              </div>
+              <div style="background:#FBF6EC; border:2px solid #C98A2B; border-radius:12px; padding:18px; display:grid; grid-template-columns:64px minmax(0,1fr) 110px 110px 110px 120px; gap:12px; align-items:center">
+                <div style="width:38px; height:38px; border-radius:50%; background:#C98A2B; color:#FBF6EC; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:800; font-variant-numeric:tabular-nums">1</div>
+                <div style="display:flex; align-items:center; gap:12px"><span style="font-size:21px; font-weight:700">Ana's crew</span><span style="font-size:11px; font-weight:800; letter-spacing:.08em; color:#C98A2B">LEADING</span></div>
+                <div style="text-align:right; font-size:17px; font-weight:600; font-variant-numeric:tabular-nums">38</div>
+                <div style="text-align:right; font-size:17px; font-weight:600; font-variant-numeric:tabular-nums">43</div>
+                <div style="text-align:right; font-size:17px; color:#8A6A4A; font-variant-numeric:tabular-nums">0</div>
+                <div style="text-align:right; font-size:32px; font-weight:800; font-variant-numeric:tabular-nums">81</div>
+              </div>
+              <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:18px; display:grid; grid-template-columns:64px minmax(0,1fr) 110px 110px 110px 120px; gap:12px; align-items:center">
+                <div style="width:38px; text-align:center; font-size:18px; font-weight:800; color:#8A6A4A; font-variant-numeric:tabular-nums">2</div>
+                <div style="font-size:19px; font-weight:600">Baybay boys</div>
+                <div style="text-align:right; font-size:17px; font-weight:600; font-variant-numeric:tabular-nums">40</div>
+                <div style="text-align:right; font-size:17px; font-weight:600; font-variant-numeric:tabular-nums">38</div>
+                <div style="text-align:right; font-size:17px; color:#8A6A4A; font-variant-numeric:tabular-nums">0</div>
+                <div style="text-align:right; font-size:28px; font-weight:800; font-variant-numeric:tabular-nums">78</div>
+              </div>
+              <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:18px; display:grid; grid-template-columns:64px minmax(0,1fr) 110px 110px 110px 120px; gap:12px; align-items:center">
+                <div style="width:38px; text-align:center; font-size:18px; font-weight:800; color:#8A6A4A; font-variant-numeric:tabular-nums">3</div>
+                <div style="font-size:19px; font-weight:600">Team lampitaw</div>
+                <div style="text-align:right; font-size:17px; font-weight:600; font-variant-numeric:tabular-nums">32</div>
+                <div style="text-align:right; font-size:17px; font-weight:600; font-variant-numeric:tabular-nums">33</div>
+                <div style="text-align:right; font-size:17px; color:#8A6A4A; font-variant-numeric:tabular-nums">0</div>
+                <div style="text-align:right; font-size:28px; font-weight:800; font-variant-numeric:tabular-nums">65</div>
+              </div>
+              <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:18px; display:grid; grid-template-columns:64px minmax(0,1fr) 110px 110px 110px 120px; gap:12px; align-items:center">
+                <div style="width:38px; text-align:center; font-size:18px; font-weight:800; color:#8A6A4A; font-variant-numeric:tabular-nums">4</div>
+                <div style="display:flex; align-items:center; gap:12px"><span style="font-size:19px; font-weight:600">Cafe kwatro</span><span style="font-size:12px; font-weight:600; color:#D9714E">−5 deduction</span></div>
+                <div style="text-align:right; font-size:17px; font-weight:600; font-variant-numeric:tabular-nums">29</div>
+                <div style="text-align:right; font-size:17px; font-weight:600; font-variant-numeric:tabular-nums">28</div>
+                <div style="text-align:right; font-size:17px; color:#8A6A4A; font-variant-numeric:tabular-nums">0</div>
+                <div style="text-align:right; font-size:28px; font-weight:800; font-variant-numeric:tabular-nums">52</div>
+              </div>
+              <div style="background:#FBF6EC; border:1px solid rgba(59,36,23,.08); border-radius:12px; padding:18px; display:grid; grid-template-columns:64px minmax(0,1fr) 110px 110px 110px 120px; gap:12px; align-items:center">
+                <div style="width:38px; text-align:center; font-size:18px; font-weight:800; color:#8A6A4A; font-variant-numeric:tabular-nums">5</div>
+                <div style="font-size:19px; font-weight:600">Sundo squad</div>
+                <div style="text-align:right; font-size:17px; font-weight:600; font-variant-numeric:tabular-nums">24</div>
+                <div style="text-align:right; font-size:17px; font-weight:600; font-variant-numeric:tabular-nums">20</div>
+                <div style="text-align:right; font-size:17px; color:#8A6A4A; font-variant-numeric:tabular-nums">0</div>
+                <div style="text-align:right; font-size:28px; font-weight:800; font-variant-numeric:tabular-nums">44</div>
+              </div>
+              <div style="margin-top:auto; font-size:13px; color:#8A6A4A">Round 3 and the tie-breaker are unscored — unanswered questions count as 0.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showDesktop&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Mockup scope&quot;},&quot;showQrCode&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Mockup scope&quot;},&quot;showTiebreaker&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Mockup scope&quot;}}"></script>
+</body>
+</html>
