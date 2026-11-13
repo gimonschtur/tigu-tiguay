@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Trophy } from 'lucide-react';
+import { Trophy, Pencil, MonitorPlay } from 'lucide-react';
 import { getActiveSession, getLeaderboard, getTeamsInOrder, getAllQuestionsFlat, endSession } from '../lib/repository';
 import PersistentPane from '../components/PersistentPane';
 
@@ -42,6 +42,17 @@ export default function Home() {
           </div>
         </div>
 
+        {/* UX-M24: edit control on the team-names row opens Manage teams. */}
+        <div className="bg-card border border-espresso/10 rounded-xl px-3.5 py-2.5 flex items-center gap-3">
+          <div className="flex-1 min-w-0">
+            <p className="text-xs font-semibold tracking-wide text-muted">TEAMS</p>
+            <p className="text-sm truncate">{teamsInOrder.map((t) => t.name).join(' \u00b7 ')}</p>
+          </div>
+          <button onClick={() => navigate('/teams')} aria-label="Manage teams" className="shrink-0 border border-espresso/20 rounded-lg p-2.5">
+            <Pencil size={16} />
+          </button>
+        </div>
+
         <div className="flex gap-2">
           <button
             onClick={() => navigate('/leaderboard')}
@@ -62,6 +73,13 @@ export default function Home() {
             End session
           </button>
         </div>
+
+        <button
+          onClick={() => navigate('/display?view=game')}
+          className="border border-espresso/20 text-espresso text-sm font-semibold py-2.5 rounded-xl flex items-center justify-center gap-1.5"
+        >
+          <MonitorPlay size={15} /> Open display mode
+        </button>
       </div>
 
       <div className="flex-1 px-4 pb-2 flex flex-col gap-4 overflow-y-auto">

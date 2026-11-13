@@ -8,7 +8,7 @@ export default function Deduction() {
   const navigate = useNavigate();
   const [session] = useState(getActiveSession());
   const [teamId, setTeamId] = useState('');
-  const [amount, setAmount] = useState('5');
+  const [amount, setAmount] = useState('1');
   const [reason, setReason] = useState('');
   const [error, setError] = useState('');
 

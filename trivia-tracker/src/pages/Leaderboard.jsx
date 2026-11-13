@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { MonitorPlay } from 'lucide-react';
 import { getActiveSession, getLeaderboard, getTeamsInOrder, getTeamTotal } from '../lib/repository';
 import PersistentPane from '../components/PersistentPane';
 import TopBar from '../components/TopBar';
@@ -12,19 +13,14 @@ export default function Leaderboard() {
   if (!session) { navigate('/'); return null; }
   const teams = getLeaderboard(session);
   const teamsInOrder = getTeamsInOrder(session);
-  const leader = teams[0];
-
-  let rows = teams;
-  if (tab !== 'game') {
-    // Round/category view collapses to whichever group is currently selected via a simple picker below.
-  }
 
   return (
     <div className="min-h-screen bg-cream text-espresso flex flex-col">
       <TopBar label="Leaderboard" />
 
-      <div className="p-4 flex flex-col gap-3.5">
-        <div className="flex gap-1.5 bg-card border border-espresso/10 rounded-xl p-1">
+      <div className="flex-1 p-4 flex flex-col gap-3.5">
+        <div className="flex items-center gap-2">
+        <div className="flex-1 flex gap-1.5 bg-card border border-espresso/10 rounded-xl p-1">
           {[['game', 'Game'], ['round', 'Round'], ['category', 'Category']].map(([key, label]) => (
             <button
               key={key}
@@ -34,6 +30,15 @@ export default function Leaderboard() {
               {label}
             </button>
           ))}
+        </div>
+          {/* FR-M43/UX-M31: opens Display mode on the view selected here. */}
+          <button
+            onClick={() => navigate(`/display?view=${tab}`)}
+            aria-label="Open display mode with this view"
+            className="shrink-0 border border-espresso/20 rounded-xl p-3"
+          >
+            <MonitorPlay size={18} />
+          </button>
         </div>
 
         {tab === 'game' && (
@@ -87,17 +92,6 @@ export default function Leaderboard() {
           </div>
         )}
 
-        {leader && (
-          <div className="bg-card border border-espresso/10 rounded-xl p-3.5">
-            <p className="text-xs font-semibold tracking-wide text-muted mb-2">{leader.name.toUpperCase()} · BY ROUND</p>
-            {session.rounds.map((r) => (
-              <div key={r.id} className="flex justify-between text-sm py-1">
-                <span>{r.name}</span>
-                <span className="font-semibold">{getTeamTotal(session, leader.id, { roundId: r.id })}</span>
-              </div>
-            ))}
-          </div>
-        )}
       </div>
 
       <PersistentPane session={session} teams={teamsInOrder} />

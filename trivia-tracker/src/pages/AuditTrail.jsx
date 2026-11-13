@@ -28,7 +28,7 @@ export default function AuditTrail() {
     <div className="min-h-screen bg-cream text-espresso flex flex-col">
       <TopBar label="Audit trail" />
 
-      <div className="p-4 flex flex-col gap-3">
+      <div className="flex-1 p-4 flex flex-col gap-3">
         <div className="flex gap-2 flex-wrap">
           {['round', 'category', 'question', 'team'].map((key) => (
             <button

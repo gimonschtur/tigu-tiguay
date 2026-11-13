@@ -1,0 +1,8 @@
+# Build settings for deploying straight from this repository.
+[build]
+  base = "trivia-tracker"
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"

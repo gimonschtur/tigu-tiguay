@@ -10,7 +10,7 @@
 | UX-M02 | Upon starting a session, the system shall display a home screen showing the list of categories grouped by round, along with a button to access the leaderboard. | ✅ `Home.jsx` |
 | UX-M03 | The system shall provide access to the home screen from every other screen. | ✅ Via `PersistentPane`/`TopBar` on all in-session screens |
 | UX-M04 | Each screen shall include a navigation control that allows the score tracker to navigate directly to a specific round, category, or question. | ✅ `NavigateSheet.jsx`, opened from the persistent pane |
-| UX-M05 | Each question shall have a dedicated scoring screen that provides two methods of awarding points to a team: (a) a button that applies a predefined point value on click, and (b) an input field for entering a specific point value. Both methods shall be available on the same screen. The screen shall display the question's identifier (FR-M08) only, not the question's text content. | ✅ `LiveScoring.jsx` — the data model has no question-text field at all, so this can't be violated |
+| UX-M05 | Each question shall have a dedicated scoring screen whose per-team scoring control is determined by the question's default point value: a discrete tap-target row (UX-M28) for a default of 5 or less, or Full marks plus a custom option (UX-M29) for a default greater than 5. The screen shall display the question's identifier (FR-M08) only, not the question's text content. When the question has already been scored, the screen shall mark it as "editing a scored question" (status-based, independent of UX-M16). | ✅ `LiveScoring.jsx` |
 | UX-M06 | The system shall allow the score tracker to enter or view scores for all teams for a given question on a single screen. | ✅ `LiveScoring.jsx` lists all teams |
 | UX-M07 | The system shall display a persistent pane on all screens containing: (a) access to the home screen, (b) access to each round, category, and question, (c) a summary of each team's running total score, (d) access to the score deduction screen (UX-M09), and (e) access to the audit trail screen (UX-M21). | ✅ On all in-session screens (Home, Live Scoring, Deduction, Leaderboard, Audit Trail). Intentionally absent on pre-session screens (Landing, Session Creation, Join) and terminal screens (End Session Confirm, Final Results, Past Sessions), where there's no live session state to summarize |
 | UX-M08 | The system shall allow the score tracker to update the score of a previously answered question. | ✅ `LiveScoring.jsx`, reached via the navigate sheet |
@@ -20,14 +20,29 @@
 | UX-M12 | The session-creation flow shall allow the game master to specify the number of participating teams and enter each team's name (FR-M16). | ✅ `SessionCreate.jsx` |
 | UX-M13 | The session-creation flow shall allow the game master to optionally add a tie-breaker round, including a defined number of tie-breaker questions (FR-M17). The tie-breaker round shall appear and score identically to any other round. | ✅ `SessionCreate.jsx` |
 | UX-M14 | The leaderboard and the end-session flow shall handle questions that were never activated or answered without error, treating them as contributing zero points (FR-M18). | ✅ |
-| UX-M15 | Upon completing the score entry for a question (UX-M05/UX-M06), the system shall automatically advance the score tracker to the next question in sequence. | ✅ Fixed during this review — see notes at the bottom |
-| UX-M16 | The system shall display a confirmation prompt before overwriting an existing score when editing a past question, to prevent accidental data loss. | ✅ Bottom-sheet confirmation in `LiveScoring.jsx` |
-| UX-M17 | The system shall provide a screen where a view-only device can enter or scan the session identifier (FR-M19) to connect to the active session. | ⚠️ `Join.jsx` exists with the code entry and QR placeholder UI, but the "Join" action is a stub — it doesn't actually connect to a live session (needs FR-M23) |
+| UX-M15 | The system shall provide a "Save and next question" control that commits all staged scores for the current question (FR-M29) and advances the score tracker to the next question in sequence. This is the sole means of advancing past a question. | ✅ *(supersedes the original auto-advance wording)* |
+| UX-M16 | The system shall display a single confirmation prompt before overwriting an already-scored question's recorded scores, triggered only when at least one team's staged value actually differs from its existing recorded value — not merely because the question's status is "scored." A team being scored for the first time within an already-touched question does not trigger it. This is one prompt for the question as a whole, not one per team. | ✅ Bottom sheet in `LiveScoring.jsx`, listing each changed team |
+| UX-M17 | The system shall provide a screen where a view-only device can enter or scan the session identifier (FR-M19) to connect to the active session as a viewer. | ⚠️ `Join.jsx` — works only for the session on the same device until FR-M23 |
 | UX-M18 | Upon opening the app with no active session in progress, the system shall display a landing screen with two options: "Start a session" (leading to the session-creation flow, UX-M11) and "Join a session" (leading to the session-join screen, UX-M17). | ✅ `Landing.jsx` |
 | UX-M19 | If the device was already acting as the score tracker for an active session (FR-M25), the app shall skip the landing screen (UX-M18) on reopen and return directly to that session's home screen (UX-M02). | ✅ `Entry` component in `App.jsx` |
 | UX-M20 | The home screen shall display the session identifier (join code or QR code, FR-M26) so the score tracker can share it with participants joining as view-only viewers. | ✅ `Home.jsx` |
 | UX-M21 | The system shall provide an audit trail screen, accessible from the persistent pane, showing every point change (FR-M12) with its round, category, question, team, point value, and timestamp. The screen shall allow filtering by round, category, question, and team. | ✅ `AuditTrail.jsx` |
 | UX-M22 | During session creation, each category shall provide a button to apply a common default point value to all of its questions at once, in addition to the ability to set each question's point value individually (FR-M27). | ✅ `SessionCreate.jsx` |
+| UX-M23 | The session-creation flow shall pre-populate sensible defaults to speed up setup: three teams; three rounds — Round 1 (Current Events, Science, Geography), Round 2 (Pop Culture, Math, History), Round 3 (Famous Movie Lines, Name that Song); five questions per category; and a default point value of 1. All defaults shall remain fully editable — addable, removable, and renameable — before the session starts. | ✅ `SessionCreate.jsx` |
+| UX-M24 | The system shall provide a "Manage teams" screen, accessible from the home screen via an edit control, allowing the score tracker to rename any team at any point during an active session (FR-M28). | ✅ `ManageTeams.jsx` |
+| UX-M25 | Display mode (FR-M38) shall show team names and scores at a size legible from across a room, in a dark, high-contrast theme distinct from the rest of the app, with no touch targets or interactive controls of any kind, auto-refreshing as new scores are saved (FR-M11). It shall support three views matching the leaderboard's breakdown: whole game, per round, and per category (FR-M42). Within the per-round and per-category views, each group's top-ranked team shall use the same gold-highlight treatment as the overall leader (FR-M44), at a smaller size than the whole-game view since those views list more rows. | ✅ `DisplayMode.jsx` |
+| UX-M26 | The join screen shall let the connecting device choose "Viewer" or "Display" after entering a session code, determining which layout it receives (FR-M39). | ✅ `Join.jsx` |
+| UX-M27 | *(Revised)* Editor controls shall be meaningfully larger than the minimum accessible touch-target size. All teams shall remain visible together on the live scoring screen, rather than requiring per-team navigation — prioritized over strict thumb-zone placement per direct score-tracker feedback. | ✅ 44 px tap targets, all teams on one screen |
+| UX-M28 | For a question whose default point value is 5 or less (FR-M40), the scoring screen shall present, per team, a single row of tap targets numbered 1 through the default value inclusive. Each target shall be a compact, evenly-sized control. The target matching the team's currently staged value shall render filled in the primary accent color with light text; every other target shall render outlined in that same accent color. Tapping the currently-staged target again reverts the staged value to zero (FR-M30); tapping any other target stages that value immediately. A team with no target selected shows a dash and scores zero. | ✅ `LiveScoring.jsx` |
+| UX-M29 | For a question whose default point value is greater than 5 (FR-M41), the scoring screen shall present, per team: a "Full marks · N" control sized as the primary action, plus a smaller "Custom" control. Full marks follows the same accent color and toggle rule as UX-M28. Selecting Custom shall reveal a numeric input, pre-filled with the team's currently staged value, accepting any whole number from 1 up to the default value; this input shall use a secondary (espresso) outline, signaling a distinct entry mode. Whichever control was used most recently determines the staged value (FR-M31). | ✅ `LiveScoring.jsx` |
+| UX-M30 | Across all live-scoring controls (UX-M28, UX-M29, UX-M37), a filled control in the primary accent color shall always mean "this is staged / on," and an outlined control in that same color shall always mean "available but not staged." This visual language shall stay consistent regardless of which variant a given question uses. | ✅ |
+| UX-M31 | The leaderboard screen shall include a control to open Display mode, which shall show the same view (game, round, or category) currently selected on the leaderboard — not default back to the whole-game view. | ✅ `Leaderboard.jsx` |
+| UX-M32 | The live scoring screen shall show the category name, the current question's position within it ("Question X of Y"), and a segmented progress indicator across that category's questions — the current question marked distinctly from scored and unanswered ones. | ✅ `LiveScoring.jsx` |
+| UX-M33 | Arriving at the first question of a new category — via the normal Save-and-next progression, or via the Back control (UX-M34) — shall display a distinct banner naming the new category, clearly different in treatment from the ordinary question-to-question transition within the same category. Manually jumping to a question via the navigation control shall not trigger this banner. | ✅ `LiveScoring.jsx` (plus a 60 ms vibration where supported) |
+| UX-M34 | The live scoring screen shall display a Back control that navigates to the previous question without committing any values staged for the current question. On the first question of the session, this control shall be hidden or disabled, since there is no previous question. | ✅ `LiveScoring.jsx` |
+| UX-M35 | Each point-value field in the session-creation flow shall present buttons for values 1 through 5, plus a custom input for values greater than 5 — matching the live scoring screen's own threshold and visual treatment (UX-M28) for consistency. | ✅ `SessionCreate.jsx` |
+| UX-M36 | In the session-creation flow's point-value fields, the value button and the custom input shall be mutually exclusive: selecting a button clears and disables the input; selecting the already-active button again deselects it and re-enables the input; typing into the input (once enabled) stages that value directly. | ✅ `SessionCreate.jsx` |
+| UX-M37 | The live scoring screen shall show the all-teams control (FR-M51) as a full-width button directly above the team list. Off: outlined in the primary accent, labeled "Give +N to all teams." On: filled in the primary accent, labeled "+N given to all teams · Tap to undo" (UX-M30). After it is turned off (FR-M52), a brief message shall state how many teams were reverted and which teams kept hand-entered values, with an Undo action that restores the bulk values. | ✅ `LiveScoring.jsx` |
 
 ## Should Have (S)
 
@@ -119,7 +134,28 @@
 
 ---
 
-## Implementation Review Notes (this pass)
+## Implementation Review Notes
+
+**November rebuild + scoring-screen update (UX-M28/M29 reworded, UX-M37 added).**
+The repository held the 5 September build; the later staged-scoring work
+(FR-M28 onward, Display mode, Manage teams, category-derived IDs, Back,
+1–5 setup buttons, zero corrections) existed only in a chat sandbox. This
+pass rebuilt that work from the recorded requirement decisions and
+applied the approved scoring-screen design on top:
+
+- **No zero button.** The tap row now runs 1–N (≤5 pts) and the >5 pts
+  variant is Full marks + Custom. Zero is still reachable: a team with
+  nothing selected saves as 0, and tapping the staged control again
+  clears it (FR-M30). Zero corrections (FR-M50) work the same way.
+- **All-teams toggle (FR-M51/M52, UX-M37).** One button stages the default
+  for every team. Tapping it again gives each team still holding the bulk
+  value back its earlier value (0 on a fresh question); hand edits made
+  after the bulk add stay. An Undo message follows.
+
+The rebuild matches the documented behavior, not the earlier code line by
+line, so small visual differences from the September build are expected.
+
+## Earlier Implementation Review Notes
 
 **UX-M15 regression, found and fixed.** The rewrite that matched the
 visual mockup replaced the original auto-advance behavior with a manual
