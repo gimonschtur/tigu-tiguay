@@ -2,95 +2,56 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Plus, Trash2, Wand2, ChevronDown, ChevronRight } from 'lucide-react';
 import { createSession } from '../lib/repository';
-import { makeId, assignPrefixes } from '../lib/id';
+import { makeId, deriveCategoryPrefix, makeCategoryQuestionId } from '../lib/id';
 
-// FR-M48: the same 1..5 threshold as the live scoring tap row.
-export const POINT_BUTTON_MAX = 5;
+// FR-M48: buttons cover 1-5, matching the live scoring screen's own
+// threshold (FR-M40) — a question worth 5 or less gets the tap-target row
+// there, so this keeps setup visually and numerically consistent with play.
+const POINT_BUTTON_MAX = 5;
 
-function buildQuestions(count, defaultPoints) {
-  return Array.from({ length: count }, (_, i) => ({
-    id: `tmp${i}`, order: i, defaultPointValue: Number(defaultPoints) || 1, status: 'unanswered',
-  }));
+function pointModeFor(value) {
+  const n = Number(value) || 0;
+  return n >= 1 && n <= POINT_BUTTON_MAX ? 'button' : 'input';
 }
 
-function makeCategory(name, defaultPoints) {
-  return { id: makeId('cat'), name, questionCount: 5, commonDefault: defaultPoints, prefix: '', questions: buildQuestions(5, defaultPoints) };
+function buildQuestions(count, defaultPoints, prefix) {
+  const questions = [];
+  for (let i = 0; i < count; i++) {
+    const value = Number(defaultPoints) || 1;
+    questions.push({ id: makeCategoryQuestionId(prefix, i), order: i, defaultPointValue: value, pointMode: pointModeFor(value), status: 'unanswered' });
+  }
+  return questions;
 }
 
-// UX-M23: three rounds of named categories, five questions each.
+// All prefixes currently in use across every round/category, optionally
+// excluding one category (used when recomputing that category's own prefix).
+function allOtherPrefixes(rounds, excludeCatId) {
+  return rounds.flatMap((r) => r.categories.filter((c) => c.id !== excludeCatId).map((c) => c.prefix));
+}
+
+// Default session structure: 3 rounds with real category names (not the
+// "XX" placeholder), 5 questions per category. Since names are real from
+// the start, prefixes are genuinely name-derived (FR-M34) — all 8 land on
+// distinct prefixes (CE, SC, GE, PC, MA, HI, FM, NT), no collision
+// fallback needed, but deriveCategoryPrefix is still called through the
+// normal collision-checking path for correctness if that ever changes.
 const DEFAULT_STRUCTURE = [
-  ['Current Events', 'Science', 'Geography'],
-  ['Pop Culture', 'Math', 'History'],
-  ['Famous Movie Lines', 'Name that Song'],
+  { name: 'Round 1', categories: ['Current Events', 'Science', 'Geography'] },
+  { name: 'Round 2', categories: ['Pop Culture', 'Math', 'History'] },
+  { name: 'Round 3', categories: ['Famous Movie Lines', 'Name that Song'] },
 ];
 
 function buildDefaultRounds(defaultPoints) {
-  return assignPrefixes(DEFAULT_STRUCTURE.map((names, r) => ({
-    id: makeId('round'),
-    name: `Round ${r + 1}`,
-    isTieBreaker: false,
-    categories: names.map((n) => makeCategory(n, defaultPoints)),
-  })));
-}
-
-// FR-M48/FR-M49/UX-M35/UX-M36: buttons for 1..5 plus a custom input for
-// larger values. Picking a button clears and disables the input; picking
-// the same button again deselects it and re-enables the input.
-function PointPicker({ value, onChange, label, size = 'md' }) {
-  const n = Number(value);
-  const inButtonRange = value !== '' && Number.isInteger(n) && n >= 1 && n <= POINT_BUTTON_MAX;
-  const [typed, setTyped] = useState(() => (value !== '' && !inButtonRange ? String(value) : ''));
-  const [usingInput, setUsingInput] = useState(() => value !== '' && !inButtonRange);
-  // Re-sync when the value changes from outside (e.g. "Apply to all").
-  const [syncedValue, setSyncedValue] = useState(value);
-  if (value !== syncedValue) {
-    setSyncedValue(value);
-    const nextUsing = value !== '' && !inButtonRange;
-    setUsingInput(nextUsing);
-    setTyped(nextUsing ? String(value) : '');
-  }
-  const emit = (v) => { setSyncedValue(v); onChange(v); };
-  const showButtonActive = inButtonRange && !usingInput;
-  const btn = size === 'sm' ? 'w-8 h-8 text-sm' : 'w-10 h-10 text-base';
-
-  return (
-    <div className="flex items-center gap-1.5 flex-wrap" role="group" aria-label={label}>
-      {Array.from({ length: POINT_BUTTON_MAX }, (_, i) => i + 1).map((v) => {
-        const active = showButtonActive && n === v;
-        return (
-          <button
-            key={v}
-            type="button"
-            aria-pressed={active}
-            onClick={() => {
-              setTyped('');
-              setUsingInput(false);
-              emit(active ? '' : v);
-            }}
-            className={`${btn} rounded-lg border-[1.5px] border-teal font-extrabold ${active ? 'bg-teal text-card' : 'text-teal'}`}
-          >
-            {v}
-          </button>
-        );
-      })}
-      <input
-        type="number"
-        inputMode="numeric"
-        min={POINT_BUTTON_MAX + 1}
-        max={100}
-        placeholder={`${POINT_BUTTON_MAX + 1}+`}
-        disabled={showButtonActive}
-        value={typed}
-        aria-label={`${label} — custom value`}
-        onChange={(e) => {
-          setTyped(e.target.value);
-          setUsingInput(e.target.value !== '');
-          emit(e.target.value === '' ? '' : Number(e.target.value));
-        }}
-        className={`${size === 'sm' ? 'w-14 h-8 text-sm' : 'w-16 h-10 text-base'} border-[1.5px] border-espresso/30 rounded-lg px-2 text-center font-bold bg-white disabled:opacity-40`}
-      />
-    </div>
-  );
+  const usedPrefixes = [];
+  return DEFAULT_STRUCTURE.map((roundDef) => {
+    const categories = roundDef.categories.map((catName) => {
+      const prefix = deriveCategoryPrefix(catName, usedPrefixes);
+      usedPrefixes.push(prefix);
+      const questions = buildQuestions(5, defaultPoints, prefix);
+      return { id: makeId('cat'), name: catName, questionCount: 5, commonDefault: defaultPoints, commonDefaultMode: pointModeFor(defaultPoints), prefix, questions };
+    });
+    return { id: makeId('round'), name: roundDef.name, isTieBreaker: false, categories };
+  });
 }
 
 function Toggle({ checked, onChange }) {
@@ -105,16 +66,53 @@ function Toggle({ checked, onChange }) {
   );
 }
 
+// FR-M48/FR-M49/UX-M35/UX-M36: buttons 1-5 plus a custom input above 5,
+// mutually exclusive — selecting a button clears/disables the input;
+// selecting the already-active button again deselects it (toggle) and
+// re-enables the input; typing stages a custom value directly.
+function PointField({ value, mode, onSelectButton, onCustomChange }) {
+  const isButtonMode = mode === 'button';
+  return (
+    <div className="flex items-center gap-1">
+      {Array.from({ length: POINT_BUTTON_MAX }, (_, i) => i + 1).map((b) => {
+        const active = isButtonMode && Number(value) === b;
+        return (
+          <button
+            key={b}
+            type="button"
+            onClick={() => onSelectButton(b)}
+            className={`w-7 h-7 rounded-md text-xs font-bold shrink-0 ${active ? 'bg-teal text-cream' : 'border border-teal text-teal'}`}
+          >
+            {b}
+          </button>
+        );
+      })}
+      <input
+        type="number"
+        min={POINT_BUTTON_MAX + 1}
+        max={100}
+        placeholder={`>${POINT_BUTTON_MAX}`}
+        disabled={isButtonMode}
+        value={isButtonMode ? '' : value}
+        onChange={(e) => onCustomChange(e.target.value)}
+        className={`w-14 h-7 border rounded-md px-1 text-xs text-center bg-white shrink-0 ${
+          isButtonMode ? 'border-espresso/15 text-muted/50 cursor-not-allowed' : 'border-gold'
+        }`}
+      />
+    </div>
+  );
+}
+
+
 const STEPS = ['Basics', 'Rounds', 'Teams'];
 
 export default function SessionCreate() {
   const navigate = useNavigate();
   const [step, setStep] = useState(0);
   const [defaultPoints, setDefaultPoints] = useState(1);
+  const [defaultPointsMode, setDefaultPointsMode] = useState(pointModeFor(1));
   const [teams, setTeams] = useState(['Team 1', 'Team 2', 'Team 3']);
-  const [rounds, setRoundsRaw] = useState(() => buildDefaultRounds(1));
-  // FR-M34–M37: every structural change re-derives prefixes and question IDs.
-  const setRounds = (next) => setRoundsRaw(assignPrefixes(next));
+  const [rounds, setRounds] = useState(() => buildDefaultRounds(1));
   const [tieBreaker, setTieBreaker] = useState({ enabled: false, questionCount: 3 });
   const [expandedCatId, setExpandedCatId] = useState(null);
 
@@ -133,15 +131,43 @@ export default function SessionCreate() {
   function addCategory(roundId) {
     const roundIndex = rounds.findIndex((r) => r.id === roundId);
     if (roundIndex === -1) return;
-    const newCat = makeCategory('', defaultPoints);
+    const prefix = deriveCategoryPrefix('', allOtherPrefixes(rounds, null));
+    const questions = buildQuestions(5, defaultPoints, prefix);
+    const newCat = { id: makeId('cat'), name: '', questionCount: 5, commonDefault: defaultPoints, commonDefaultMode: pointModeFor(defaultPoints), prefix, questions };
     setRounds(rounds.map((r, i) => (i !== roundIndex ? r : { ...r, categories: [...r.categories, newCat] })));
     setExpandedCatId(newCat.id);
+  }
+
+  // FR-M36: renaming a category regenerates its question IDs (new prefix,
+  // renumbered from 01) — point values stay put, only the ID strings change.
+  function updateCategoryName(roundId, catId, name) {
+    setRounds(rounds.map((r) => {
+      if (r.id !== roundId) return r;
+      return {
+        ...r,
+        categories: r.categories.map((c) => {
+          if (c.id !== catId) return c;
+          const prefix = deriveCategoryPrefix(name, allOtherPrefixes(rounds, catId));
+          const questions = c.questions.map((q, i) => ({ ...q, id: makeCategoryQuestionId(prefix, i) }));
+          return { ...c, name, prefix, questions };
+        }),
+      };
+    }));
   }
 
   function updateCategoryField(roundId, catId, field, value) {
     setRounds(rounds.map((r) => {
       if (r.id !== roundId) return r;
       return { ...r, categories: r.categories.map((c) => (c.id === catId ? { ...c, [field]: value } : c)) };
+    }));
+  }
+
+  // FR-M49/UX-M36: sets the category's common-default value and its mode
+  // together, atomically — the field driving PointField's button/input state.
+  function updateCategoryCommonDefault(roundId, catId, value, mode) {
+    setRounds(rounds.map((r) => {
+      if (r.id !== roundId) return r;
+      return { ...r, categories: r.categories.map((c) => (c.id === catId ? { ...c, commonDefault: value, commonDefaultMode: mode } : c)) };
     }));
   }
 
@@ -155,7 +181,9 @@ export default function SessionCreate() {
           if (c.id !== catId) return c;
           const questions = Array.from({ length: n }, (_, i) => {
             const existing = c.questions[i];
-            return existing || { id: `tmp${i}`, order: i, defaultPointValue: Number(c.commonDefault) || 1, status: 'unanswered' };
+            const id = makeCategoryQuestionId(c.prefix, i);
+            const fallback = Number(c.commonDefault) || 1;
+            return existing ? { ...existing, id } : { id, order: i, defaultPointValue: fallback, pointMode: pointModeFor(fallback), status: 'unanswered' };
           });
           return { ...c, questionCount: n, questions };
         }),
@@ -163,14 +191,15 @@ export default function SessionCreate() {
     }));
   }
 
-  function updateQuestionPoint(roundId, catId, questionIndex, value) {
+  // FR-M49/UX-M36: sets a question's point value and mode together.
+  function updateQuestionPoint(roundId, catId, questionId, value, mode) {
     setRounds(rounds.map((r) => {
       if (r.id !== roundId) return r;
       return {
         ...r,
         categories: r.categories.map((c) => (c.id !== catId ? c : {
           ...c,
-          questions: c.questions.map((q, i) => (i === questionIndex ? { ...q, defaultPointValue: value } : q)),
+          questions: c.questions.map((q) => (q.id === questionId ? { ...q, defaultPointValue: value, pointMode: mode } : q)),
         })),
       };
     }));
@@ -183,7 +212,10 @@ export default function SessionCreate() {
         ...r,
         categories: r.categories.map((c) => (c.id !== catId ? c : {
           ...c,
-          questions: c.questions.map((q) => ({ ...q, defaultPointValue: Number(c.commonDefault) || 1 })),
+          questions: c.questions.map((q) => {
+            const v = Number(c.commonDefault) || 1;
+            return { ...q, defaultPointValue: v, pointMode: pointModeFor(v) };
+          }),
         })),
       };
     }));
@@ -202,6 +234,24 @@ export default function SessionCreate() {
     return Number.isInteger(n) && n >= 1 && n <= 100;
   }
 
+  // FR-M49/UX-M36: Step 1's default-points field uses the same button/input
+  // toggle rule as the category and per-question fields below.
+  function selectDefaultPointsButton(b) {
+    const alreadySelected = defaultPointsMode === 'button' && Number(defaultPoints) === b;
+    if (alreadySelected) {
+      setDefaultPoints('');
+      setDefaultPointsMode('input');
+    } else {
+      setDefaultPoints(b);
+      setDefaultPointsMode('button');
+    }
+  }
+
+  function handleDefaultPointsCustom(value) {
+    setDefaultPoints(value);
+    setDefaultPointsMode('input');
+  }
+
   function handleBack() {
     if (step === 0) navigate('/');
     else setStep(step - 1);
@@ -213,29 +263,14 @@ export default function SessionCreate() {
   }
 
   function handleStart() {
-    const structure = rounds.map((r) => ({
+    const finalRounds = rounds.map((r) => ({
       id: r.id,
-      name: r.name || 'Round',
+      name: r.name,
       isTieBreaker: false,
-      categories: r.categories.map((c) => ({ id: c.id, name: c.name, questions: c.questions })),
-    }));
-    if (tieBreaker.enabled) {
-      structure.push({
-        id: makeId('round'),
-        name: 'Tie-breaker',
-        isTieBreaker: true,
-        categories: [{ id: makeId('cat'), name: 'Tie-breaker', questions: buildQuestions(Number(tieBreaker.questionCount) || 0, defaultPoints) }],
-      });
-    }
-    // FR-M35: an unnamed category keeps its XX-style prefix; it only gets a
-    // display name here.
-    const finalRounds = assignPrefixes(structure).map((r) => ({
-      ...r,
-      categories: r.categories.map(({ prefix, ...c }) => ({
-        ...c,
-        prefix,
-        name: c.name.trim() || 'Untitled category',
-        questions: c.questions.map((q) => ({ ...q, defaultPointValue: Number(q.defaultPointValue), status: 'unanswered' })),
+      categories: r.categories.map((c) => ({
+        id: c.id,
+        name: c.name || 'Category',
+        questions: c.questions.map((q) => ({ ...q, defaultPointValue: Number(q.defaultPointValue) || 1 })),
       })),
     }));
 
@@ -244,9 +279,22 @@ export default function SessionCreate() {
       alert('Every question\u2019s point value must be a whole number from 1 to 100.');
       return;
     }
-    if (!isValidPoint(defaultPoints)) {
+    if (tieBreaker.enabled && !isValidPoint(defaultPoints)) {
       alert('Default point value must be a whole number from 1 to 100.');
       return;
+    }
+    if (tieBreaker.enabled) {
+      const tbPrefix = deriveCategoryPrefix('Tie-breaker', allOtherPrefixes(rounds, null));
+      finalRounds.push({
+        id: makeId('round'),
+        name: 'Tie-breaker',
+        isTieBreaker: true,
+        categories: [{
+          id: makeId('cat'),
+          name: 'Tie-breaker',
+          questions: buildQuestions(Number(tieBreaker.questionCount) || 0, defaultPoints, tbPrefix),
+        }],
+      });
     }
 
     const finalTeams = teams.filter((t) => t.trim()).map((name) => ({ id: makeId('team'), name: name.trim() }));
@@ -279,9 +327,14 @@ export default function SessionCreate() {
           <div className="bg-card border border-espresso/10 rounded-xl p-3.5 flex flex-col gap-3">
             <p className="text-xs font-semibold tracking-wide text-muted">DEFAULT POINTS PER QUESTION</p>
             <div className="flex items-center gap-2.5">
-              <PointPicker value={defaultPoints} onChange={setDefaultPoints} label="Default points per question" />
+              <PointField
+                value={defaultPoints}
+                mode={defaultPointsMode}
+                onSelectButton={selectDefaultPointsButton}
+                onCustomChange={handleDefaultPointsCustom}
+              />
+              <span className="text-xs text-muted">Override per question later.</span>
             </div>
-            <p className="text-xs text-muted">Tap 1&ndash;5, or type 6&ndash;100. Override per question later.</p>
           </div>
         )}
 
@@ -308,6 +361,7 @@ export default function SessionCreate() {
                           className="w-full flex items-center gap-2 px-3 py-2.5 text-left"
                         >
                           {isOpen ? <ChevronDown size={14} className="text-muted shrink-0" /> : <ChevronRight size={14} className="text-muted shrink-0" />}
+                          <span className="text-xs font-mono text-muted shrink-0">{cat.prefix}</span>
                           <span className="text-sm flex-1 truncate">{cat.name || 'Untitled category'}</span>
                           <span className="text-xs text-muted shrink-0">{cat.questions.length} questions</span>
                         </button>
@@ -315,10 +369,10 @@ export default function SessionCreate() {
                         {isOpen && (
                           <div className="px-3 pb-3 flex flex-col gap-2.5 border-t border-espresso/10 pt-2.5">
                             <div className="flex items-center gap-2">
-                              <span className="text-xs font-mono text-muted w-6 shrink-0" title="Question ID prefix">{cat.prefix}</span>
+                              <span className="text-xs font-mono text-muted w-6 shrink-0">{cat.prefix}</span>
                               <input
                                 value={cat.name}
-                                onChange={(e) => updateCategoryField(round.id, cat.id, 'name', e.target.value)}
+                                onChange={(e) => updateCategoryName(round.id, cat.id, e.target.value)}
                                 placeholder="Category name"
                                 className="flex-1 border border-espresso/20 rounded-lg px-2 py-1.5 text-sm bg-white"
                               />
@@ -330,13 +384,19 @@ export default function SessionCreate() {
                               />
                               <button onClick={() => removeCategory(round.id, cat.id)} aria-label="Remove category" className="text-coral shrink-0"><Trash2 size={14} /></button>
                             </div>
+                            <p className="text-xs text-muted -mt-1">
+                              Question IDs use the prefix <span className="font-mono">{cat.prefix}</span>, derived from the category name above.
+                            </p>
 
-                            <div className="flex flex-col items-start gap-2">
-                              <PointPicker
-                                size="sm"
+                            <div className="flex items-center gap-2 flex-wrap">
+                              <PointField
                                 value={cat.commonDefault}
-                                onChange={(v) => updateCategoryField(round.id, cat.id, 'commonDefault', v)}
-                                label="Common default point value"
+                                mode={cat.commonDefaultMode}
+                                onSelectButton={(b) => {
+                                  const alreadySelected = cat.commonDefaultMode === 'button' && Number(cat.commonDefault) === b;
+                                  updateCategoryCommonDefault(round.id, cat.id, alreadySelected ? '' : b, alreadySelected ? 'input' : 'button');
+                                }}
+                                onCustomChange={(v) => updateCategoryCommonDefault(round.id, cat.id, v, 'input')}
                               />
                               <button
                                 onClick={() => applyCommonDefault(round.id, cat.id)}
@@ -347,14 +407,17 @@ export default function SessionCreate() {
                             </div>
 
                             <div className="flex flex-col gap-1.5">
-                              {cat.questions.map((q, qi) => (
-                                <div key={`${cat.id}-${qi}`} className="flex items-center gap-2 text-sm">
-                                  <span className="w-12 font-mono text-muted">{q.id}</span>
-                                  <PointPicker
-                                    size="sm"
+                              {cat.questions.map((q) => (
+                                <div key={q.id} className="flex items-center gap-2 text-sm">
+                                  <span className="w-12 font-mono text-muted shrink-0">{q.id}</span>
+                                  <PointField
                                     value={q.defaultPointValue}
-                                    onChange={(v) => updateQuestionPoint(round.id, cat.id, qi, v)}
-                                    label={`Points for ${q.id}`}
+                                    mode={q.pointMode}
+                                    onSelectButton={(b) => {
+                                      const alreadySelected = q.pointMode === 'button' && Number(q.defaultPointValue) === b;
+                                      updateQuestionPoint(round.id, cat.id, q.id, alreadySelected ? '' : b, alreadySelected ? 'input' : 'button');
+                                    }}
+                                    onCustomChange={(v) => updateQuestionPoint(round.id, cat.id, q.id, v, 'input')}
                                   />
                                 </div>
                               ))}

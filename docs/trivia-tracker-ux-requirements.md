@@ -32,9 +32,9 @@
 | UX-M24 | The system shall provide a "Manage teams" screen, accessible from the home screen via an edit control, allowing the score tracker to rename any team at any point during an active session (FR-M28). | ✅ `ManageTeams.jsx` |
 | UX-M25 | Display mode (FR-M38) shall show team names and scores at a size legible from across a room, in a dark, high-contrast theme distinct from the rest of the app, with no touch targets or interactive controls of any kind, auto-refreshing as new scores are saved (FR-M11). It shall support three views matching the leaderboard's breakdown: whole game, per round, and per category (FR-M42). Within the per-round and per-category views, each group's top-ranked team shall use the same gold-highlight treatment as the overall leader (FR-M44), at a smaller size than the whole-game view since those views list more rows. | ✅ `DisplayMode.jsx` |
 | UX-M26 | The join screen shall let the connecting device choose "Viewer" or "Display" after entering a session code, determining which layout it receives (FR-M39). | ✅ `Join.jsx` |
-| UX-M27 | *(Revised)* Editor controls shall be meaningfully larger than the minimum accessible touch-target size. All teams shall remain visible together on the live scoring screen, rather than requiring per-team navigation — prioritized over strict thumb-zone placement per direct score-tracker feedback. | ✅ 44 px tap targets, all teams on one screen |
+| UX-M27 | *(Revised)* Editor controls shall be meaningfully larger than the minimum accessible touch-target size. All teams shall remain visible together on the live scoring screen, rather than requiring per-team navigation — prioritized over strict thumb-zone placement per direct score-tracker feedback. | ✅ 48 px tap targets, all teams on one screen |
 | UX-M28 | For a question whose default point value is 5 or less (FR-M40), the scoring screen shall present, per team, a single row of tap targets numbered 1 through the default value inclusive. Each target shall be a compact, evenly-sized control. The target matching the team's currently staged value shall render filled in the primary accent color with light text; every other target shall render outlined in that same accent color. Tapping the currently-staged target again reverts the staged value to zero (FR-M30); tapping any other target stages that value immediately. A team with no target selected shows a dash and scores zero. | ✅ `LiveScoring.jsx` |
-| UX-M29 | For a question whose default point value is greater than 5 (FR-M41), the scoring screen shall present, per team: a "Full marks · N" control sized as the primary action, plus a smaller "Custom" control. Full marks follows the same accent color and toggle rule as UX-M28. Selecting Custom shall reveal a numeric input, pre-filled with the team's currently staged value, accepting any whole number from 1 up to the default value; this input shall use a secondary (espresso) outline, signaling a distinct entry mode. Whichever control was used most recently determines the staged value (FR-M31). | ✅ `LiveScoring.jsx` |
+| UX-M29 | For a question whose default point value is greater than 5 (FR-M41), the scoring screen shall present, per team: a "Full marks · N" control sized as the primary action, plus a smaller "Custom" control. Full marks follows the same accent color and toggle rule as UX-M28. Selecting Custom shall reveal a numeric input, pre-filled with the team's currently staged value, accepting any whole number from 1 up to the default value; this input shall use a secondary (gold) accent, signaling a distinct entry mode. Whichever control was used most recently determines the staged value (FR-M31). | ✅ `LiveScoring.jsx` |
 | UX-M30 | Across all live-scoring controls (UX-M28, UX-M29, UX-M37), a filled control in the primary accent color shall always mean "this is staged / on," and an outlined control in that same color shall always mean "available but not staged." This visual language shall stay consistent regardless of which variant a given question uses. | ✅ |
 | UX-M31 | The leaderboard screen shall include a control to open Display mode, which shall show the same view (game, round, or category) currently selected on the leaderboard — not default back to the whole-game view. | ✅ `Leaderboard.jsx` |
 | UX-M32 | The live scoring screen shall show the category name, the current question's position within it ("Question X of Y"), and a segmented progress indicator across that category's questions — the current question marked distinctly from scored and unanswered ones. | ✅ `LiveScoring.jsx` |
@@ -136,12 +136,11 @@
 
 ## Implementation Review Notes
 
-**November rebuild + scoring-screen update (UX-M28/M29 reworded, UX-M37 added).**
-The repository held the 5 September build; the later staged-scoring work
-(FR-M28 onward, Display mode, Manage teams, category-derived IDs, Back,
-1–5 setup buttons, zero corrections) existed only in a chat sandbox. This
-pass rebuilt that work from the recorded requirement decisions and
-applied the approved scoring-screen design on top:
+**Scoring-screen update (UX-M28/M29 reworded, UX-M37 added).** Built on the latest
+source (the version published from the September session), which also
+brings FR-M28 onward — staged scoring, Display mode, Manage teams,
+category-derived IDs, Back, 1–5 setup buttons, zero corrections — into
+the repository for the first time.
 
 - **No zero button.** The tap row now runs 1–N (≤5 pts) and the >5 pts
   variant is Full marks + Custom. Zero is still reachable: a team with
@@ -151,9 +150,6 @@ applied the approved scoring-screen design on top:
   for every team. Tapping it again gives each team still holding the bulk
   value back its earlier value (0 on a fresh question); hand edits made
   after the bulk add stay. An Undo message follows.
-
-The rebuild matches the documented behavior, not the earlier code line by
-line, so small visual differences from the September build are expected.
 
 ## Earlier Implementation Review Notes
 

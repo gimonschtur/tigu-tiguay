@@ -1,24 +1,25 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Eye, MonitorPlay } from 'lucide-react';
-import { findSessionByJoinCode } from '../lib/repository';
+import { getActiveSession } from '../lib/repository';
 
-// UX-M17/FR-M39/UX-M26: join with a session code as a Viewer or as a
-// Display. Without a cloud backend (FR-M23) this only finds the session
-// stored on this same device.
+// UX-M26: choose Viewer or Display before joining, determining which
+// layout the connecting device gets (FR-M39). Actual cross-device
+// connection still requires a real backend (FR-M23, not yet built) — but
+// if the entered code matches THIS device's own active session, joining
+// genuinely works (e.g. a second browser tab on the same laptop feeding a
+// projector), rather than being a pure stub either way.
 export default function Join() {
   const navigate = useNavigate();
   const [code, setCode] = useState('');
   const [mode, setMode] = useState('viewer');
-  const [error, setError] = useState('');
 
   function handleJoin() {
-    const session = findSessionByJoinCode(code);
-    if (!session) {
-      setError('No session with that code on this device. Joining from another device needs the cloud database.');
+    const active = getActiveSession();
+    if (active && active.joinCode === code.trim().toUpperCase()) {
+      navigate(mode === 'display' ? '/display' : '/leaderboard');
       return;
     }
-    navigate(mode === 'display' ? '/display?view=game' : '/leaderboard');
+    alert('Live multi-device join requires a cloud backend — see the high-level design doc, section 7. Entering this device\u2019s own session code still works.');
   }
 
   return (
@@ -31,42 +32,54 @@ export default function Join() {
 
       <div className="flex-1 p-6 flex flex-col gap-6 max-w-sm mx-auto w-full">
         <p className="text-sm text-muted leading-relaxed">
-          Enter the code shown on the score tracker's home screen, then choose how this device should show scores.
+          Enter the code shown on the score tracker's home screen, or scan the QR code.
         </p>
+
+        <div className="flex flex-col gap-2.5">
+          <p className="text-xs font-semibold tracking-wide text-muted">JOIN AS</p>
+          <div className="flex gap-1.5 bg-card border border-espresso/10 rounded-xl p-1">
+            {[['viewer', 'Viewer'], ['display', 'Display']].map(([key, label]) => (
+              <button
+                key={key}
+                onClick={() => setMode(key)}
+                className={`flex-1 py-2.5 rounded-lg text-sm font-semibold ${mode === key ? 'bg-espresso text-cream' : 'text-muted'}`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+          <p className="text-xs text-muted">
+            {mode === 'viewer'
+              ? 'A normal read-only view of scores and the leaderboard.'
+              : 'A large, passive display for a projector or shared screen — no touch controls.'}
+          </p>
+        </div>
 
         <div className="flex flex-col gap-2.5">
           <p className="text-xs font-semibold tracking-wide text-muted">SESSION CODE</p>
           <input
             value={code}
-            onChange={(e) => { setCode(e.target.value.toUpperCase()); setError(''); }}
+            onChange={(e) => setCode(e.target.value.toUpperCase())}
             placeholder="ABC123"
             maxLength={6}
-            aria-label="Session code"
             className="bg-card border border-espresso/25 rounded-xl px-4 py-4 text-center text-2xl font-extrabold tracking-widest"
           />
         </div>
 
-        <div className="flex flex-col gap-2.5">
-          <p className="text-xs font-semibold tracking-wide text-muted">JOIN AS</p>
-          <div className="flex gap-2">
-            {[['viewer', 'Viewer', Eye, 'Phone, view-only'], ['display', 'Display', MonitorPlay, 'Projector or TV']].map(([key, label, Icon, hint]) => (
-              <button
-                key={key}
-                onClick={() => setMode(key)}
-                aria-pressed={mode === key}
-                className={`flex-1 rounded-xl border-[1.5px] p-3 flex flex-col items-center gap-1 ${mode === key ? 'border-teal bg-teal/10 text-teal' : 'border-espresso/20'}`}
-              >
-                <Icon size={20} />
-                <span className="text-sm font-bold">{label}</span>
-                <span className="text-xs text-muted">{hint}</span>
-              </button>
-            ))}
-          </div>
+        <button onClick={handleJoin} className="bg-teal text-cream font-semibold py-3.5 rounded-xl">
+          Join
+        </button>
+
+        <div className="flex items-center gap-3">
+          <div className="flex-1 h-px bg-espresso/15" />
+          <span className="text-xs text-muted">or</span>
+          <div className="flex-1 h-px bg-espresso/15" />
         </div>
 
-        {error && <p className="text-coral text-sm font-medium">{error}</p>}
-
-        <button onClick={handleJoin} className="bg-teal text-cream font-semibold py-3.5 rounded-xl">Join</button>
+        <div className="bg-card border border-espresso/10 rounded-xl p-6 flex flex-col items-center gap-3.5">
+          <div className="w-36 h-36 rounded-lg bg-[repeating-linear-gradient(45deg,#8A6A4A_0_6px,#F1E4D0_6px_12px)]" />
+          <button className="border border-espresso/30 rounded-lg px-5 py-3 text-sm font-semibold">Scan QR code</button>
+        </div>
       </div>
     </div>
   );

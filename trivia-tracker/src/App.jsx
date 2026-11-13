@@ -8,10 +8,10 @@ import Deduction from './pages/Deduction';
 import Leaderboard from './pages/Leaderboard';
 import AuditTrail from './pages/AuditTrail';
 import Join from './pages/Join';
+import ManageTeams from './pages/ManageTeams';
+import DisplayMode from './pages/DisplayMode';
 import FinalResults from './pages/FinalResults';
 import PastSessions from './pages/PastSessions';
-import DisplayMode from './pages/DisplayMode';
-import ManageTeams from './pages/ManageTeams';
 
 function Entry() {
   // FR-M24/M25 — skip the landing choice for a returning editor with an active session.
@@ -26,14 +26,14 @@ export default function App() {
         <Route path="/create" element={<SessionCreate />} />
         <Route path="/join" element={<Join />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/manage-teams" element={<ManageTeams />} />
+        <Route path="/display" element={<DisplayMode />} />
         <Route path="/score/:questionId" element={<LiveScoring />} />
         <Route path="/deduct" element={<Deduction />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/audit" element={<AuditTrail />} />
         <Route path="/leaderboard-final" element={<FinalResults />} />
         <Route path="/past-sessions" element={<PastSessions />} />
-        <Route path="/display" element={<DisplayMode />} />
-        <Route path="/teams" element={<ManageTeams />} />
       </Routes>
     </BrowserRouter>
   );

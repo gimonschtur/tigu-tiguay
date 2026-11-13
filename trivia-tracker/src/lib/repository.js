@@ -55,8 +55,9 @@ export function isReturningEditor() {
   return !!(session && session.status === 'active' && token && session.editorDeviceToken === token);
 }
 
-// Deductions (FR-M13) commit immediately through this function — they have
-// no staging step. Question scoring goes through saveQuestionScores below.
+// Generic single-entry append — used for deductions, which commit
+// immediately (there is no staging step for a deduction). Question scoring
+// no longer goes through this function; see saveQuestionScores below.
 export function appendAuditEntry(entry) {
   const session = getActiveSession();
   if (!session || session.status !== 'active') return null;
@@ -70,27 +71,27 @@ export function appendAuditEntry(entry) {
   return fullEntry;
 }
 
-// FR-M28: rename a team at any point during an active session.
+// FR-M28: rename a team at any point during an active session, not just
+// during session creation.
 export function renameTeam(teamId, name) {
   const session = getActiveSession();
   if (!session || session.status !== 'active') return null;
   const team = session.teams.find((t) => t.id === teamId);
-  const trimmed = (name || '').trim();
-  if (!team || !trimmed) return null;
-  team.name = trimmed;
+  if (!team) return null;
+  team.name = name;
   save(SESSION_KEY, session);
   return session;
 }
 
-// FR-M29/FR-M32/FR-M33/FR-M50: commits every team's staged value for one
-// question in a single batch, only when the score tracker presses Save.
-// Staging a value alone writes nothing.
+// FR-M29/FR-M32/FR-M33: commits every team's staged value for a question in
+// a single batch, only when the score tracker presses Save — nothing is
+// written to the audit trail, and the question's status does not change,
+// from staging a button/input value alone.
 //
-// stagedByTeam: { [teamId]: number | string }.
-// - 0 with no prior record → nothing written (FR-M32).
-// - 0 with a prior non-zero record → a zero correction (FR-M50).
-// - Unchanged value → nothing written.
-// - New or changed value → 'score' or 'correction', decided per team.
+// stagedByTeam: { [teamId]: number | string }. A staged value of 0 is
+// treated as "nothing to save" for that team (FR-M32) — any existing
+// recorded score for them is left untouched, matching FR-M20's 1-100 range
+// (0 is never itself a valid recorded score).
 export function saveQuestionScores(questionId, roundId, categoryId, stagedByTeam) {
   const session = getActiveSession();
   if (!session || session.status !== 'active') return null;
@@ -99,8 +100,28 @@ export function saveQuestionScores(questionId, roundId, categoryId, stagedByTeam
   for (const [teamId, rawValue] of Object.entries(stagedByTeam)) {
     const n = Number(rawValue) || 0;
     const existing = getLatestQuestionEntry(session, questionId, teamId);
-    if (n === 0 && !existing) continue; // FR-M32
-    if (existing && existing.pointValue === n) continue; // unchanged
+
+    if (n === 0) {
+      // FR-M32: no prior record and nothing staged — genuinely nothing to save.
+      if (!existing) continue;
+      // FR-M50: the sole exception — a team who already has a recorded
+      // score can be explicitly corrected DOWN to zero. Skip only if
+      // they're already at zero (no real change).
+      if (existing.pointValue === 0) continue;
+      session.auditEntries.push({
+        id: makeId('audit'),
+        timestamp,
+        teamId,
+        questionId,
+        roundId,
+        categoryId,
+        pointValue: 0,
+        type: 'correction',
+      });
+      continue;
+    }
+
+    if (existing && existing.pointValue === n) continue; // unchanged, skip
     session.auditEntries.push({
       id: makeId('audit'),
       timestamp,
@@ -113,23 +134,15 @@ export function saveQuestionScores(questionId, roundId, categoryId, stagedByTeam
     });
   }
 
-  // FR-M33: the question becomes "scored" here, and only here.
   for (const round of session.rounds) {
     for (const category of round.categories) {
-      const q = category.questions.find((x) => x.id === questionId);
-      if (q) q.status = 'scored';
+      const q = category.questions.find((q) => q.id === questionId);
+      if (q) q.status = 'scored'; // FR-M33: only here, only on save
     }
   }
-  save(SESSION_KEY, session);
-  return session;
-}
 
-// FR-M39: Display mode and viewers join with the session's join code. With
-// local storage this only resolves the session stored on this device.
-export function findSessionByJoinCode(code) {
-  const session = getActiveSession();
-  if (!session || !code) return null;
-  return session.joinCode === code.trim().toUpperCase() ? session : null;
+  save(SESSION_KEY, session);
+  return getActiveSession();
 }
 
 export function endSession() {

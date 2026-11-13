@@ -65,7 +65,7 @@ Tigu-Tiguay. Requirement IDs point to `trivia-tracker-function-plan.md`
 | **Session-creation point buttons** | **1–5** | Default point value, category common default, and each question's value. Custom input above 5. | FR-M48 · `POINT_BUTTON_MAX` in `SessionCreate.jsx` |
 | **Question ID format** | 2 letters + 2 digits | e.g. `MO01`; digits restart at 01 in each category. | FR-M08 |
 | **Join code length** | 6 characters | Letters and digits, excluding look-alikes (I, O, 0, 1). | `makeJoinCode()` in `id.js` |
-| **Display mode refresh interval** | 2 seconds | How often Display mode re-reads saved scores. | `DISPLAY_REFRESH_MS` in `DisplayMode.jsx` |
+| **Display mode refresh interval** | 2 seconds | How often Display mode re-reads saved scores. | `DisplayMode.jsx` |
 | **Category-transition vibration** | 60 ms | Haptic buzz when a new category begins, where the device supports it. | `LiveScoring.jsx` |
 | **Undo message duration** | 4.5 seconds | How long the all-teams undo message stays on screen. | `LiveScoring.jsx` |
 | **Score floor** | 0 | A team's total never drops below zero. | FR-M22 |

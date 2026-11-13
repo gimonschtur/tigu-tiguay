@@ -42,17 +42,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* UX-M24: edit control on the team-names row opens Manage teams. */}
-        <div className="bg-card border border-espresso/10 rounded-xl px-3.5 py-2.5 flex items-center gap-3">
-          <div className="flex-1 min-w-0">
-            <p className="text-xs font-semibold tracking-wide text-muted">TEAMS</p>
-            <p className="text-sm truncate">{teamsInOrder.map((t) => t.name).join(' \u00b7 ')}</p>
-          </div>
-          <button onClick={() => navigate('/teams')} aria-label="Manage teams" className="shrink-0 border border-espresso/20 rounded-lg p-2.5">
-            <Pencil size={16} />
-          </button>
-        </div>
-
         <div className="flex gap-2">
           <button
             onClick={() => navigate('/leaderboard')}
@@ -75,10 +64,20 @@ export default function Home() {
         </div>
 
         <button
-          onClick={() => navigate('/display?view=game')}
-          className="border border-espresso/20 text-espresso text-sm font-semibold py-2.5 rounded-xl flex items-center justify-center gap-1.5"
+          onClick={() => navigate('/manage-teams')}
+          className="flex items-center justify-between bg-card border border-espresso/10 rounded-xl px-3.5 py-2.5"
         >
-          <MonitorPlay size={15} /> Open display mode
+          <span className="text-xs text-muted truncate flex-1 text-left">
+            {teamsInOrder.map((t) => t.name).join(' · ')}
+          </span>
+          <Pencil size={14} className="text-muted shrink-0 ml-2" />
+        </button>
+
+        <button
+          onClick={() => navigate('/display')}
+          className="flex items-center justify-center gap-2 border border-espresso/20 text-espresso text-xs font-semibold rounded-xl px-3.5 py-2.5"
+        >
+          <MonitorPlay size={14} /> Open display mode
         </button>
       </div>
 

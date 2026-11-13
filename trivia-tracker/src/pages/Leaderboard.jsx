@@ -20,22 +20,22 @@ export default function Leaderboard() {
 
       <div className="flex-1 p-4 flex flex-col gap-3.5">
         <div className="flex items-center gap-2">
-        <div className="flex-1 flex gap-1.5 bg-card border border-espresso/10 rounded-xl p-1">
-          {[['game', 'Game'], ['round', 'Round'], ['category', 'Category']].map(([key, label]) => (
-            <button
-              key={key}
-              onClick={() => setTab(key)}
-              className={`flex-1 text-center py-2.5 rounded-lg text-sm font-semibold ${tab === key ? 'bg-espresso text-cream' : 'text-muted'}`}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-          {/* FR-M43/UX-M31: opens Display mode on the view selected here. */}
+          <div className="flex-1 flex gap-1.5 bg-card border border-espresso/10 rounded-xl p-1">
+            {[['game', 'Game'], ['round', 'Round'], ['category', 'Category']].map(([key, label]) => (
+              <button
+                key={key}
+                onClick={() => setTab(key)}
+                className={`flex-1 text-center py-2.5 rounded-lg text-sm font-semibold ${tab === key ? 'bg-espresso text-cream' : 'text-muted'}`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+          {/* FR-M43/UX-M31: opens Display mode showing this same view, not defaulting back to whole-game. */}
           <button
             onClick={() => navigate(`/display?view=${tab}`)}
             aria-label="Open display mode with this view"
-            className="shrink-0 border border-espresso/20 rounded-xl p-3"
+            className="shrink-0 border border-espresso/20 text-espresso rounded-xl p-3"
           >
             <MonitorPlay size={18} />
           </button>
@@ -91,7 +91,6 @@ export default function Leaderboard() {
             })}
           </div>
         )}
-
       </div>
 
       <PersistentPane session={session} teams={teamsInOrder} />
