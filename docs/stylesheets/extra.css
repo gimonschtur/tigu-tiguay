@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&display=swap");
+/* Barako Coastal palette (see ui_design/trivia-tracker-design-system.md) */
+:root {
+  --md-primary-fg-color: #3B2417;
+  --md-primary-fg-color--light: #5A3A27;
+  --md-primary-fg-color--dark: #2A190F;
+  --md-primary-bg-color: #F1E4D0;
+  --md-accent-fg-color: #1F7A72;
+  --md-typeset-a-color: #1F7A72;
+}
+[data-md-color-scheme="default"] {
+  --md-default-bg-color: #FBF6EC;
+  --md-code-bg-color: #F1E4D0;
+}
+[data-md-color-scheme="slate"] {
+  --md-typeset-a-color: #3FB5A9;
+  --md-accent-fg-color: #3FB5A9;
+}
+.md-typeset h1, .md-typeset h2 { font-family: "Fraunces", Georgia, serif; }
+/* Diagrams (see javascripts/diagrams.js): natural size, scroll sideways. */
+.md-typeset div.diagram {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 1em 0;
+  padding: .6rem;
+  border: 1px solid rgba(59, 36, 23, .12);
+  border-radius: 10px;
+  background: var(--md-default-bg-color);
+  cursor: zoom-in;
+  white-space: pre;
+  font-size: .7rem;
+}
+.md-typeset div.diagram--ready { white-space: normal; }
+.md-typeset div.diagram svg { display: block; margin: 0 auto; max-width: none; }
+.md-typeset div.diagram--ready::after {
+  content: "Tap to enlarge";
+  display: block;
+  margin-top: .3rem;
+  font-size: .62rem;
+  color: var(--md-default-fg-color--light);
+  text-align: right;
+  position: sticky;
+  left: 0;
+}
+.diagram-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: var(--md-default-bg-color);
+  display: flex; flex-direction: column;
+}
+.diagram-overlay__bar { display: flex; justify-content: flex-end; gap: .5rem; padding: .6rem; }
+.diagram-btn {
+  padding: .45rem .8rem; border-radius: 8px; border: 1px solid currentColor;
+  font: 600 .8rem Manrope, sans-serif; color: var(--md-default-fg-color);
+  background: transparent; cursor: pointer;
+}
+.diagram-overlay__body { flex: 1; overflow: auto; padding: 0 1rem 1rem; touch-action: pan-x pan-y pinch-zoom; }
+.diagram-overlay__body svg { max-width: none; }
+.diagram-overlay__body--fit { display: flex; align-items: center; justify-content: center; }
+.diagram-overlay__body--fit svg { width: 100% !important; height: auto; max-height: 100%; }

@@ -1,0 +1,10 @@
+# Netlify settings for the documentation site.
+# In Netlify, create a site from this repo and set its Base directory to
+# "docs-site"; Netlify then reads this file instead of the app's root
+# netlify.toml.
+[build]
+  command = "pip install -r requirements.txt && mkdocs build --strict"
+  publish = "site"
+
+[build.environment]
+  PYTHON_VERSION = "3.12"
